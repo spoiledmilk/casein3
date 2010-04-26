@@ -1,0 +1,17 @@
+<h2>Add a new <%= singular_name.humanize.downcase %></h2>
+
+<%% form_for @<%= file_name %> do |form| %>
+	
+	<%%= render :partial => 'casein/<%= plural_name %>/fields', :locals => { :f => f } %>
+	
+	<p class="submits">
+		<%%= link_to 'Cancel', casein_<%= plural_name %>_path, :class => 'cancel' %> or
+		<%%= f.submit "Add new <%= singular_name.humanize.downcase %>", :class => "update" %>
+	</p>
+
+<%% end %>
+
+
+<%% content_for :sidebar do %>
+  <li><a href="<%%= url_for casein_<%= plural_name %>_path %>"><%%= casein_show_icon "table" %>Back to list</a></li>
+<%% end %>
