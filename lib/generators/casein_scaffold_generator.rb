@@ -1,10 +1,8 @@
 class CaseinScaffoldGenerator < Rails::Generators::NamedBase
   def self.source_root
-    @source_root ||= File.expand_path('../templates', __FILE__)
+    @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
   end
-  def manifest
-    record do |m|
-      m.file "definition.txt", "definition.txt"
-    end
+  def create_controller
+    template 'controller.rb', "app/controllers/casein/#{file_name}_controller.rb"
   end
 end
