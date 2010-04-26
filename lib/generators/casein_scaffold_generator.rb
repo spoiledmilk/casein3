@@ -1,7 +1,7 @@
 class CaseinScaffoldGenerator < Rails::Generators::NamedBase
   include Rails::Generators::Migration
   argument :attributes, :type => :array, :required => true, :desc => "required"
-  class_option :create_model_and_migration, :type => :boolean, :default => true
+  class_options :create_model_and_migration => false
   
   def self.next_migration_number(dirname)
     if ActiveRecord::Base.timestamped_migrations
@@ -24,5 +24,20 @@ class CaseinScaffoldGenerator < Rails::Generators::NamedBase
       template 'model.rb', "app/models/#{singular_name}.rb"
       migration_template 'migration.rb', "db/migrate/create_#{plural_name}.rb"
     end
+  end
+  
+  private
+  
+  def field_type(type)
+    case type.to_s.to_sym
+      when :integer, :float, :decimal   then :text_field
+      when :datetime, :timestamp, :time then :datetime_select
+      when :date                        then :date_select
+      when :string                      then :text_field
+      when :text                        then :text_area
+      when :boolean                     then :check_box
+    else
+      :text_field
+    end      
   end
 end
