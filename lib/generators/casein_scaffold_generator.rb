@@ -3,6 +3,6 @@ class CaseinScaffoldGenerator < Rails::Generators::NamedBase
     @source_root ||= File.expand_path(File.join(File.dirname(__FILE__), 'templates'))
   end
   def create_controller
-    template 'controller.rb', "app/controllers/casein/#{file_name}_controller.rb"
+    template 'controller.rb', "app/controllers/casein/#{plural_name}_controller.rb"
   end
 end
