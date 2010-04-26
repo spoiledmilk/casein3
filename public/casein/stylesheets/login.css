@@ -1,0 +1,123 @@
+/* CASEIN LOGIN         */
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: #efefef;
+	text-align: center;
+	font-family: "Lucida Grande", "Trebuchet MS", Helvetica, Arial, sans-serif;
+}
+
+#header {
+	background: #efefef url(/casein/images/login/top.png) repeat-x bottom left;
+	padding: 80px 0 40px 0;
+}
+
+#header h1 a img {
+	border: 0;
+}
+
+#header h1 a {
+	display: block;
+	width: 230px;
+	height: 33px;
+	margin: 0 auto;
+}
+
+#content {
+	background: #fff url(/casein/images/login/bottom.png) repeat-x bottom left;
+	padding: 70px 0;
+}
+
+#content label {
+	display: block;
+	font-size: 12px;
+	padding: 0 0 5px 0;
+	color: #444;
+}
+
+#content .text {
+	width: 318px;
+	margin: 0 auto;
+	text-align: left;
+}
+
+#content .text h3 {
+	color: #444;
+	font-size: 12px;
+	margin: 0 0 5px 0;
+	text-align: left;
+}
+
+#content .caseinTextField {
+	width: 292px;
+	padding: 8px 12px 7px 12px;
+	background: #efefef;
+	margin: 0 0 5px 0;
+}
+
+#content .submit_remember {
+	width: 318px;
+	text-align: left;
+	margin: 10px auto 0 auto;
+	font-size: 11px;
+	color: #444;
+}
+
+#content .caseinSubmit {
+	background: #338018;
+	border: medium none;
+	color: #fff;
+	font-size: 10px;
+	padding: 4px 5px 3px 5px;
+}
+
+#content .caseinSubmitBlue {
+	background: #5990CE;
+	border: medium none;
+	color: #fff;
+	font-size: 10px;
+	padding: 4px 5px 3px 5px;
+}
+
+#content .error {
+	font-size: 11px;
+	color: #c30;
+	width: 318px;
+	text-align: left;
+	margin: 0 auto 10px auto;
+	text-indent: 90px;
+}
+
+#content .notice {
+	font-size: 11px;
+	color: #444;
+	width: 318px;
+	text-align: left;
+	margin: 0 auto 10px auto;
+	text-indent: 90px;
+}
+
+#recover {
+	padding: 30px 0 0 0;
+	display: none;
+}
+
+#footer {
+	padding: 25px;
+	font-size: 11px;
+	color: #555;
+}
+
+#footer a {
+	font-size: 11px;
+	color: #4d8bb3;
+	text-decoration: none;
+}
+
+#footer a:hover {
+	color: #222;
+}

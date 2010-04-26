@@ -1,0 +1,146 @@
+.calendar_date_select {
+  border:#ddd 1px solid;
+  display:block;
+  width:220px;
+  z-index: 1000;
+  background-color:white;
+  padding: 10px;
+}
+/* this is a fun ie6 hack to get drop downs to stay behind the popup window.  This should always be just underneath .calendar_date_select */
+iframe.ie6_blocker {
+  position: absolute;
+  z-index: 999;
+}
+
+.calendar_date_select thead th {
+  color: #444 !important;
+	font-weight:bold;
+	font-size: 11px;
+	border-bottom: 1px solid #ddd;
+}
+
+.calendar_date_select .cds_buttons {
+  text-align:center;
+  padding:5px 0px;
+}
+
+.calendar_date_select .cds_footer {
+  padding:3px;
+  font-size:11px;
+	text-align:center;
+	color: #444;
+}
+
+.calendar_date_select table {
+  margin: 0px;
+	padding: 0px;
+}
+
+
+.calendar_date_select .cds_header {
+  text-align:center;
+  padding: 0 0 10px 0;	
+}
+
+.calendar_date_select .cds_header * {
+  border:0px;
+  background-color:white;  
+}
+
+.calendar_date_select .cds_header span {
+  font-size:14px;
+  color: #444;
+}
+
+.calendar_date_select select { font-size:11px;}
+
+.calendar_date_select .cds_header a:hover {
+  color: #222;
+}
+.calendar_date_select .cds_header a {
+  width:22px;
+  height:20px;
+  text-decoration: none;
+  font-size:14px;
+  color:#666;
+}
+.calendar_date_select .cds_header .prev, .calendar_date_select .cds_header .next {
+	font-size: 11px;
+	font-weight: bold;
+	cursor: pointer;
+}
+.calendar_date_select .cds_header a.prev {
+  float:left;
+}
+.calendar_date_select .cds_header a.next {
+  float:right;
+}
+.calendar_date_select .cds_header a.close {
+  float:right;
+  display:none;
+}
+
+.calendar_date_select .cds_header select.month {
+  width:90px;
+}
+
+.calendar_date_select .cds_header select.year {
+  width:61px;
+}
+
+.calendar_date_select .cds_buttons a {
+  color: black;
+  font-size: 9px;
+}
+.calendar_date_select td {
+  font-size:11px;
+  text-align:center;
+  vertical-align: middle;
+  background-color: #fff;
+	padding: 7px;
+	cursor: pointer;
+}
+.calendar_date_select td.weekend {
+}
+
+.calendar_date_select td div {
+  color: #000;
+}
+.calendar_date_select td div.other {
+  color: #ccc;
+}
+.calendar_date_select td.selected div {
+  color:white;
+}
+
+.calendar_date_select tbody td {
+}
+.calendar_date_select td.selected {
+  background-color:#777;
+}
+.calendar_date_select td.selected:hover {
+  background-color:#777;
+}
+
+.calendar_date_select td:hover {
+  background-color:#a4cbe1;
+}
+
+.calendar_date_select td.today {
+  border: 1px dashed #999;
+}
+
+.calendar_date_select td.disabled div {
+  color: #e6e6e6;
+}
+
+.fieldWithErrors .calendar_date_select {
+  border: 2px solid red;
+}
+.calendar_date_select .at_sign {
+	display: none;
+}
+
+.calendar_date_select .seperator {
+	margin: 0 3px; color: #444; font-size: 11px;
+}
