@@ -31,19 +31,19 @@ private
 	end
 	
 	def login_from_cookie
-    if @session_user.nil? and cookies[:remember_me_id] and cookies[:remember_me_code]
+    if @session_user.blank? and cookies[:remember_me_id] and cookies[:remember_me_code]
       user = CaseinUser.find(cookies[:remember_me_id])
-      if create_user_code(user) == cookies[:remember_me_code]  
-        session[:casein_user_id] = user.id     
+      if create_user_code(user) == cookies[:remember_me_code]
+        session[:casein_user_id] = user.id
       end
     end
   end
   
   def clear_session_and_cookies
     session[:casein_user_id] = nil
-		 
-		if cookies[:remember_me_id] then cookies.delete :remember_me_id end
-    if cookies[:remember_me_code] then cookies.delete :remember_me_code end
+		
+		cookies.delete(:remember_me_id) if cookies[:remember_me_id]
+    cookies.delete(:remember_me_code) if cookies[:remember_me_code]
   end
 	
 	def create_user_code user

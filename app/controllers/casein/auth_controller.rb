@@ -31,9 +31,8 @@ class Casein::AuthController < Casein::CaseinController
 	
 	def logout
 		clear_session_and_cookies
-		
 		flash.now[:notice] = "You have been logged out"
-		redirect_to :action => :login
+		redirect_to(casein_auth_path)
 	end
 	
 	def recover_password
@@ -55,8 +54,8 @@ class Casein::AuthController < Casein::CaseinController
 				flash.now[:warning] = "There is no user with that email"
 			end
 		end 
-  
-		render :action => :login
+
+		redirect_to(casein_auth_path)
 	end
 		
 end
