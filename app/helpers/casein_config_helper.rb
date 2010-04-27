@@ -38,7 +38,7 @@ module CaseinConfigHelper
 	
 	# A list of JavaScript files to include in the page head section
 	def casein_config_javascript_includes
-	 	['jquery', '/casein/javascripts/custom.js', '/casein/javascripts/casein.js', '/javascripts/prototype.js']
+	 	['/casein/javascripts/jquery.js', '/casein/javascripts/custom.js', '/casein/javascripts/casein.js', '/javascripts/prototype.js']
 	end
 
 end
