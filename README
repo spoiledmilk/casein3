@@ -1,6 +1,10 @@
-Casein3
+Get started by installing the plugin and then running:
 
-rake casein:install
+rake casein:fast_setup email=your@email.com
+(change the email to whatever you want)
+
 rails g casein_scaffold Article title:string body:text
+(change the model name and attributes)
+
 
 Copyright (c) 2010 spoiledmilk, released under the MIT license
