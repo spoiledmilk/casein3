@@ -5,6 +5,7 @@ namespace :casein do
   task :fast_setup => :environment do
     raise "Usage: specify email address, e.g. rake casein:create_admin email=mail@caseincms.com" unless ENV.include?("email")
     Rake::Task["casein:install"].invoke
+    Rake::Task["db:migrate"].invoke
     Rake::Task["casein:create_admin"].invoke
   end
 
