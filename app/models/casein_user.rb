@@ -32,12 +32,14 @@ class CaseinUser < ActiveRecord::Base
   end
 	
 	def after_create
-    CaseinNotification.deliver_new_user_information(self, casein_config_hostname, @form_password)
+    #CaseinNotification.deliver_new_user_information(self, casein_config_hostname, @form_password)
+    CaseinNotification.new_user_information(self, casein_config_hostname, @form_password).deliver
   end
   
   def after_update
     if updating_password
-      CaseinNotification.deliver_generate_new_password(self, casein_config_hostname, @form_password)
+      #CaseinNotification.deliver_generate_new_password(self, casein_config_hostname, @form_password)
+      CaseinNotification.generate_new_password(self, casein_config_hostname, @form_password).deliver
     end
   end
   

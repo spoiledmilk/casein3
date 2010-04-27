@@ -1,10 +1,12 @@
 class CaseinNotification < ActionMailer::Base
 	
-	self.template_root = File.join(File.dirname(__FILE__), '..', 'views')
+	default :from => "ryan@railscasts.com"
+	
+	self.template_root = File.join(File.dirname(__FILE__), '..', 'views', 'casein')
 	
 	def generate_new_password(casein_user, host, pass, sent_at = Time.now)
 	 
-	  @headers = {}
+	  headers = {}
 	  @from = casein_config_email_from_address
 	  @recipients = casein_user.email
 	  @sent_on = sent_at
