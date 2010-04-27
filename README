@@ -6,5 +6,13 @@ rake casein:fast_setup email=your@email.com
 rails g casein_scaffold Article title:string body:text --create-model-and-migration
 (change the model name and attributes)
 
+-- the über fast way to get started --
+
+Granted you have the usual suspects installed, just run this to get a quick test up going:
+
+rails fresh-casein-app && cd fresh-casein-app && rails plugin install git@github.com:spoiledmilk/casein3.git && rake casein:fast_setup email=my@email.com && rails g casein_scaffold Article title:string body:text --create-model-and-migration && rake db:migrate && rails server
+
+Now, go to: http://localhost:3000/casein/articles
+
 
 Copyright (c) 2010 spoiledmilk, released under the MIT license
