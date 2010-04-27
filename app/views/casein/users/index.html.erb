@@ -1,0 +1,33 @@
+<h2>Users</h2>
+
+<table cellpadding="0" cellspacing="0" id="itemList" class="itemList">
+	<tr>
+		<th>Login</th>
+		<th>Name</th>
+		<th>Status</th>
+		<th>&nbsp;</th>
+	</tr>
+	
+	<% @users.each_with_index do |user, index| %>	
+		<tr class="<%= 'even' if index.modulo(2) == 0 %> hover">
+			<td><%= link_to user.login, casein_user_path(user) %></td>
+			<td><%= link_to user.name, casein_user_path(user) %></td>
+			<td class="delete">
+				<% if user.is_admin? == false || CaseinUser.has_more_than_one_admin %>
+					<% confirm_message = "Are you sure you want to delete #{user.name}?" %>
+			
+					<% if user.id == @session_user.id %>
+						<% confirm_message += "\n\nWARNING: This is your user account. You will be logged out if you proceed." %>
+					<% end %>
+				
+					<%= link_to(casein_show_row_icon("delete"), casein_user_path(user), :method => :delete, :confirm => confirm_message) %></td>
+				<% end %>
+			</td>
+		</tr>
+	<% end %>
+</table>
+
+
+<% content_for :sidebar do %>
+  <li><%= link_to "#{casein_show_icon('add')}Add a new user".html_safe, new_casein_user_path %></li>
+<% end %>

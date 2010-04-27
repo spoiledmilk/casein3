@@ -67,29 +67,29 @@ module CaseinHelper
   end
 	
 	def casein_show_icon icon_name
-		"<div class='icon'><img src='/casein/images/icons/#{icon_name}.png' alt='' /></div>"
+		"<div class='icon'><img src='/casein/images/icons/#{icon_name}.png' alt='' /></div>".html_safe
 	end
 	
 	def casein_show_row_icon icon_name
-		"<div class='iconRow'><img src='/casein/images/icons/#{icon_name}.png' alt='' /></div>"
+		"<div class='iconRow'><img src='/casein/images/icons/#{icon_name}.png' alt='' /></div>".html_safe
 	end
 	
 	# Styled form tag helpers
 	
 	def casein_text_field form, model, attribute, options = {}
-	  casein_form_tag_wrapper form.text_field(attribute, options.merge({:class => 'caseinTextField'})), form, model, attribute, options
+	  casein_form_tag_wrapper(form.text_field(attribute, options.merge({:class => 'caseinTextField'})), form, model, attribute, options).html_safe
 	end
 	
 	def casein_password_field form, model, attribute, options = {}
-		casein_form_tag_wrapper form.password_field(attribute, options.merge({:class => 'caseinTextField'})), form, model, attribute, options
+		casein_form_tag_wrapper(form.password_field(attribute, options.merge({:class => 'caseinTextField'})), form, model, attribute, options).html_safe
 	end
 	
 	def casein_text_area form, model, attribute, options = {}
-	  casein_form_tag_wrapper form.text_area(attribute, options.merge({:class => 'caseinTextArea'})), form, model, attribute, options
+	  casein_form_tag_wrapper(form.text_area(attribute, options.merge({:class => 'caseinTextArea'})), form, model, attribute, options).html_safe
 	end
 	
 	def casein_text_area_big form, model, attribute, options = {}
-	 casein_form_tag_wrapper form.text_area(attribute, options.merge({:class => 'caseinTextAreaBig'})), form, model, attribute, options
+	 casein_form_tag_wrapper(form.text_area(attribute, options.merge({:class => 'caseinTextAreaBig'})), form, model, attribute, options).html_safe
 	end
 	
 	def casein_check_box form, model, attribute, options = {}
@@ -99,7 +99,7 @@ module CaseinHelper
 	    form_tag = "<div>" + form_tag + "<span class=\"rcText\">#{options[:casein_box_label]}</span></div>"
 	  end
 	  
-	  casein_form_tag_wrapper form_tag, form, model, attribute, options
+	  casein_form_tag_wrapper(form_tag, form, model, attribute, options).html_safe
 	end
 	
 	def casein_check_box_group form, model, check_boxes = {}
@@ -119,7 +119,7 @@ module CaseinHelper
 	    form_tag = "<div>" + form_tag + "<span class=\"rcText\">#{options[:casein_button_label]}</span></div>"
 	  end
 	  
-	  casein_form_tag_wrapper form_tag, form, model, attribute, options
+	  casein_form_tag_wrapper(form_tag, form, model, attribute, options).html_safe
 	end
 	
 	def casein_radio_button_group form, model, radio_buttons = {}
@@ -129,20 +129,20 @@ module CaseinHelper
       form_tags += casein_radio_button form, model, check_box[0], check_box[1], check_box[2]
     end
     
-    casein_form_tag_wrapper form_tag, form, model, attribute, options
+    casein_form_tag_wrapper(form_tag, form, model, attribute, options).html_safe
   end
 	
 	def casein_select form, model, attribute, option_tags, options = {}
-		casein_form_tag_wrapper form.select(attribute, option_tags, options, {:class => 'caseinSelect'}), form, model, attribute, options
+		casein_form_tag_wrapper(form.select(attribute, option_tags, options, {:class => 'caseinSelect'}), form, model, attribute, options).html_safe
 	end
 	
 	def casein_collection_select form, model, object, attribute, collection, value_method, text_method, options = {}
-		casein_form_tag_wrapper collection_select(object, attribute, collection, value_method, text_method, options, {:class => 'caseinSelect'}), form, model, attribute, options
+		casein_form_tag_wrapper(collection_select(object, attribute, collection, value_method, text_method, options, {:class => 'caseinSelect'}), form, model, attribute, options).html_safe
 	end
 	
 	def casein_datetime_select form, model, attribute, options = {}
 	  options.merge!(:time => true)
-	  casein_date_select form, model, attribute, options
+	  casein_date_select(form, model, attribute, options).html_safe
 	end
 	
 	def casein_date_select form, model, attribute, options = {}
@@ -150,16 +150,16 @@ module CaseinHelper
 	  eval("model.#{attribute.to_s} = Time.now") if eval("model.#{attribute.to_s}.nil?")
 	  default_options = { :month_year => "label", :embedded => true, :clear_button => false }
 	  contents = content_tag(:div, form.calendar_date_select(attribute, {:class => 'caseinDateSelect'}.reverse_merge!(default_options.merge!(options))), :class => 'caseinDateSelectWrapper')
-	  casein_form_tag_wrapper contents, form, model, attribute, options
+	  casein_form_tag_wrapper(contents, form, model, attribute, options).html_safe
 	end
 
 	def casein_file_field form, model, object_name, attribute, options = {}
 	  contents = '<div class="caseinFileFieldContainer">' + file_field(object_name, attribute, options) + '</div>'
-	  casein_form_tag_wrapper contents, form, model, attribute, options
+	  casein_form_tag_wrapper(contents, form, model, attribute, options).html_safe
 	end
 	
 	def casein_hidden_field form, model, attribute, options = {}
-	  form.hidden_field model, attribute, options
+	  form.hidden_field(model, attribute, options).html_safe
 	end
 	
 protected

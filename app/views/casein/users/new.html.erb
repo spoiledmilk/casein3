@@ -1,0 +1,40 @@
+<h2>Add a new user</h2>
+
+<% form_for @casein_user do |form| %>
+
+	<div class="tfContainer">
+		<%= casein_text_field form, @casein_user, :login, {:size => 30} %>
+	</div>
+	
+	<div class="tfContainer tfContainerSecond">
+		<%= casein_text_field form, @casein_user, :name %>
+	</div>
+	
+	<div class="tfContainer">
+		<%= casein_text_field form, @casein_user, :email %>
+	</div>
+
+	<div class="tfContainer tfContainerSecond">
+		<%= casein_select form, @casein_user, :access_level, casein_get_access_level_array, {:casein_label => "Status"} %>
+	</div>
+	
+	<div class="tfContainer">
+		<%= casein_password_field form, @casein_user, :form_password, {:casein_label => "Password"} %>
+	</div>
+	
+	<div class="tfContainer tfContainerSecond">
+		<%= casein_password_field form, @casein_user, :form_password_confirmation, {:casein_label => "Repeat password"} %>
+	</div>
+
+	<div class="clearer"></div>
+
+	<p class="submits">
+		<%= form.submit "Add new user", :class => "update" %>
+	</p>
+
+<% end %>
+
+
+<% content_for :sidebar do %>
+  <li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
+<% end %>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Welcome to <%= casein_config_website_name %></title>
+		<%= stylesheet_link_tag "/casein/stylesheets/login.css" %>
+		<%= javascript_include_tag :defaults, "/casein/javascripts/login.js", :cache => "casein_auth_javascripts" %>
+	</head>
+	<body>
+		<div id="header">
+			<h1><%= image_tag(casein_config_logo, :alt => casein_config_website_name) %></h1>
+		</div>
+		<div id="content">
+			<%= yield %>
+		</div>
+		<div id="footer">
+			<p>Based on <%= link_to "Casein", "http://www.caseincms.com" %> technology,
+			an open-source project initiated by <a href="http://www.spoiledmilk.dk">Spoiled Milk</a>.</p>
+		</div>
+	</body>
+</html>

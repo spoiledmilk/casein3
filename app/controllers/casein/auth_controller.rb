@@ -1,33 +1,31 @@
 class Casein::AuthController < Casein::CaseinController
   
   layout "casein_auth"
- 	before_filter :authorise, :except => [:login, :recover_password]
+ 	skip_before_filter :authorize, :only => [:show, :login, :recover_password]
   
-  def index
-    redirect_to :controller => :casein
+  def show
+    
   end
   
 	def login
-		if request.post?
-    	user = CaseinUser.authenticate(params[:login], params[:form_password])
-			if user
-  
-			  clear_session_and_cookies
-  
-				session[:casein_user_id] = user.id
-				uri = session[:original_uri]
-				session[:original_uri] = nil
-				
-				if params[:remember_me] 
-					user_code = create_user_code user
-					cookies[:remember_me_id] = { :value => user.id.to_s, :expires => 30.days.from_now }
-					cookies[:remember_me_code] = { :value => user_code, :expires => 30.days.from_now }
-				end
-				
-				redirect_to(uri || {:controller => :casein})
-			else
-				flash.now[:warning] = "Unknown login or incorrect password"
+  	user = CaseinUser.authenticate(params[:login], params[:form_password])
+		if user
+		  clear_session_and_cookies
+
+			session[:casein_user_id] = user.id
+			uri = session[:original_uri]
+			session[:original_uri] = nil
+			
+			if params[:remember_me] 
+				user_code = create_user_code user
+				cookies[:remember_me_id] = { :value => user.id.to_s, :expires => 30.days.from_now }
+				cookies[:remember_me_code] = { :value => user_code, :expires => 30.days.from_now }
 			end
+			
+			redirect_to(uri || {:controller => :casein})
+		else
+			flash.now[:warning] = "Unknown login or incorrect password"
+			render :action => :show
 		end
 	end
 	

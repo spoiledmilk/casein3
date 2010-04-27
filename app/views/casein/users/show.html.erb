@@ -1,0 +1,87 @@
+<h2>View user</h2>
+
+<%= form_for @casein_user do |f| %>
+
+	<div class="tfContainer">
+		<%= casein_text_field f, f.object, :login, {:size => 30} %>
+	</div>
+
+	<div class="tfContainer tfContainerSecond">
+		<%= casein_text_field f, f.object, :name %>
+	</div>
+
+	<div class="tfContainer">
+		<%= casein_text_field f, f.object, :email %>
+	</div>
+
+	<div class="tfContainer tfContainerSecond">
+		<% if @session_user.is_admin? && CaseinUser.has_more_than_one_admin %>
+			<%= casein_select f, f.object, :access_level, casein_get_access_level_array, {:casein_label => "Status"} %>
+		<% end %>
+	</div>
+
+	<div class="clearer"></div>
+
+	<p class="submits">
+	  <%= link_to 'Cancel', casein_users_path, :class => 'cancel' %> or
+		<%= f.submit "Save changes", :class => "update" %>
+	</p>
+<% end %>
+
+<% if @session_user.is_admin? %>
+
+	<h2>Reset password (admin action - use carefully)</h2>
+
+	<%= form_for @casein_user, :url => reset_password_casein_user_path(@casein_user) do |f| %>
+
+		<div class="tfContainer">
+			<%= casein_password_field f, f.object, :form_password, {:casein_label => "New password"} %>
+		</div>
+		
+		<div class="tfContainer tfContainerSecond">
+			<%= casein_password_field f, f.object, :form_password_confirmation, {:casein_label => "Repeat password"} %>
+		</div>
+	
+		<div class="clearer"></div>
+	
+		<p class="submits">
+			<%= f.submit "Reset", :class => "update" %>
+		</p>
+		
+	<% end %>
+	
+<% elsif @session_user.id == @casein_user.id %>
+
+	<h2>Change password</h2>
+
+	<%= form_for @casein_user, :url => update_password_casein_user_path(@casein_user) do |f| %>
+
+		<div class="tfContainer">
+			<p><%= label_tag :form_current_password, "Current password" %></p>
+			<p><%= password_field_tag :form_current_password, "", {:class => 'caseinTextField'} %></p>
+		</div>
+
+		<div class="tfContainer tfContainerSecond">
+		</div>
+
+		<div class="tfContainer">
+			<%= casein_password_field f, f.object, :form_password, {:casein_label => "New password"} %>
+		</div>
+		
+		<div class="tfContainer tfContainerSecond">
+			<%= casein_password_field f, f.object, :form_password_confirmation, {:casein_label => "Repeat password"} %>
+		</div>
+
+		<div class="clearer"></div>
+
+		<p class="submits">
+			<%= f.submit "Change", :class => "update" %>
+		</p>
+
+	<% end %>
+<% end %>
+
+
+<% content_for :sidebar do %>
+  <li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
+<% end %>

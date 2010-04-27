@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>Casein</title>
+		<%= stylesheet_link_tag casein_config_stylesheet_includes, :cache => "casein_main_stylesheets" %>
+		<%= javascript_include_tag :defaults, :cache => "casein_defaults_javascripts" %>	
+		<%= javascript_include_tag casein_config_javascript_includes, :cache => "casein_main_javascripts" %>
+		<%= yield :calendar_includes %>
+	</head>
+	<body>
+		<div id="header">
+			<h1><%= image_tag(casein_config_logo, :alt => casein_config_website_name) %></h1>
+			<div id="dashboard">
+				<% if @session_user != nil %>
+				<ul>
+					<li>Hello <%= @session_user.name %></li>
+					<li><%= link_to 'Profile', casein_user_path(@session_user) %></li>
+					<li class="lastItem"><%= link_to 'Logout', logout_casein_auth_path %></li>
+				</ul>	
+				<% end %>
+			</div>
+			<div id="navigation">
+				<ul>
+					<%= render :partial => '/casein/layouts/left_navigation' %>
+				</ul>		
+			</div>
+			<div id="altNavigation">
+				<ul>
+					<% if @session_user.is_admin? %>
+						<li><%= link_to 'Users', casein_users_path %></li>
+					<% end %>
+					<%= render :partial => '/casein/layouts/right_navigation' %>
+				</ul>
+			</div>
+		</div>
+		<div id="rightBar">
+			<div class="spacer"></div>
+			<ul>
+				<%= yield(:sidebar) %>
+			</ul>
+		</div>
+		<div id="content">
+			<div id="data">
+				<% if flash[:warning] %>
+					<div id="error">
+						<%= flash[:warning] %>
+					</div>
+				<% end %>
+				<% if flash[:notice] %>
+					<div id="notice">
+						<%= flash[:notice] %>
+					</div>
+				<% end %>
+				<%= yield %>
+			</div>
+		</div>
+	</body>
+</html>

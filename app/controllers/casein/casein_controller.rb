@@ -8,7 +8,7 @@ class Casein::CaseinController < ApplicationController
 
   layout 'casein_main'
   before_filter :login_from_cookie
-  before_filter :authorise
+  before_filter :authorize
 
   ActionView::Base.field_error_proc = proc { |input, instance| input } 
 
@@ -22,11 +22,11 @@ class Casein::CaseinController < ApplicationController
 
 private
   
-  def authorise    
+  def authorize    
     @session_user = casein_get_session_user
 		unless @session_user
-		  session[:original_uri] = request.request_uri
-		  redirect_to(:controller => :casein_auth, :action => :login)
+		  session[:original_uri] = request.fullpath
+		  redirect_to(casein_auth_path)
 		end
 	end
 	
