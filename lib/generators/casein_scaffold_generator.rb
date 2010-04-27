@@ -23,10 +23,10 @@ class CaseinScaffoldGenerator < Rails::Generators::NamedBase
     add_to_routes_namespace
     add_to_routes
     add_to_navigation
-    #if options[:create_model_and_migration]
+    if options[:create_model_and_migration]
       template 'model.rb', "app/models/#{singular_name}.rb"
       migration_template 'migration.rb', "db/migrate/create_#{plural_name}.rb"
-    #end
+    end
   end
   
   protected

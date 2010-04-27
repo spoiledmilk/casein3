@@ -3,7 +3,7 @@ Get started by installing the plugin and then running:
 rake casein:fast_setup email=your@email.com
 (change the email to whatever you want)
 
-rails g casein_scaffold Article title:string body:text
+rails g casein_scaffold Article title:string body:text --create-model-and-migration
 (change the model name and attributes)
 
 
