@@ -1,19 +1,19 @@
-class Casein::CaseinAuthController < Casein::CaseinController
-
+class Casein::AuthController < Casein::CaseinController
+  
   layout "casein_auth"
  	before_filter :authorise, :except => [:login, :recover_password]
-
+  
   def index
     redirect_to :controller => :casein
   end
-
+  
 	def login
 		if request.post?
     	user = CaseinUser.authenticate(params[:login], params[:form_password])
 			if user
-
+  
 			  clear_session_and_cookies
-
+  
 				session[:casein_user_id] = user.id
 				uri = session[:original_uri]
 				session[:original_uri] = nil
@@ -40,9 +40,9 @@ class Casein::CaseinAuthController < Casein::CaseinController
 	
 	def recover_password
 		if request.post?
-
+  
 			@users = CaseinUser.find :all, :conditions => "email='#{params[:recover_email]}'"
-
+  
 			if @users.length > 0
 				for user in @users
 					user.generate_new_password
@@ -57,7 +57,7 @@ class Casein::CaseinAuthController < Casein::CaseinController
 				flash.now[:warning] = "There is no user with that email"
 			end
 		end 
-
+  
 		render :action => :login
 	end
 		
