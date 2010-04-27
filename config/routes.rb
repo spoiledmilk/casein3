@@ -9,5 +9,6 @@ Rails.application.routes.draw do |map|
       post :login, :recover_password
       get :logout
     end
+    root :to => "casein#blank"
   end
 end
