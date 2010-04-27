@@ -1,4 +1,4 @@
-class Casein::AuthController < Casein::CaseinController
+class Casein::CaseinAuthController < Casein::CaseinController
 
   layout "casein_auth"
  	before_filter :authorise, :except => [:login, :recover_password]
