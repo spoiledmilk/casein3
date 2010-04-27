@@ -1,6 +1,6 @@
 <h2>Add a new <%= singular_name.humanize.downcase %></h2>
 
-<%% form_for @<%= file_name %> do |form| %>
+<%%= form_for @<%= file_name %>, :url => casein_<%= plural_name %>_path do |f| %>
 	
 	<%%= render :partial => 'casein/<%= plural_name %>/fields', :locals => { :f => f } %>
 	

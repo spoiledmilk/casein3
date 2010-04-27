@@ -1,7 +1,7 @@
 class Casein::<%= class_name.pluralize %>Controller < Casein::CaseinController
   
   def index
-		@<%= plural_name %> = <%= class_name %>all#.paginate(:all, :page => params[:page])
+		@<%= plural_name %> = <%= class_name %>.all#paginate(:all, :page => params[:page])
   end
   
   def show
