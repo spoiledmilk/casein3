@@ -20,13 +20,54 @@ class CaseinScaffoldGenerator < Rails::Generators::NamedBase
     template 'views/show.html.erb', "app/views/casein/#{plural_name}/show.html.erb"
     template 'views/new.html.erb', "app/views/casein/#{plural_name}/new.html.erb"
     template 'views/_fields.html.erb', "app/views/casein/#{plural_name}/_fields.html.erb"
-    if options[:create_model_and_migration]
+    add_to_routes_namespace
+    add_to_routes
+    add_to_navigation
+    #if options[:create_model_and_migration]
       template 'model.rb', "app/models/#{singular_name}.rb"
       migration_template 'migration.rb', "db/migrate/create_#{plural_name}.rb"
-    end
+    #end
   end
   
-  private
+  protected
+  
+  def add_to_navigation
+    file_to_update = 'app/views/casein/layouts/_left_navigation.html.erb'
+    line_to_add = "<li id=\"visitSite\"><%= link_to \"#{plural_name.humanize.capitalize}\", casein_#{plural_name}_path %></li>"
+    insert_sentinel = '<!-- SCAFFOLD_INSERT -->'
+    gsub_add_once plural_name, file_to_update, line_to_add, insert_sentinel
+  end
+  
+  #replacement for standard Rails generator route_resources. This one only adds once
+  def add_to_routes_namespace
+    file_to_update = Rails.root+'config/routes.rb'
+    line_to_add = "namespace :casein do"
+    insert_sentinel = 'Application.routes.draw do |map|'
+    if File.read(file_to_update).scan(/(#{Regexp.escape("#{line_to_add}")})/mi).blank?
+      gsub_add_once plural_name, file_to_update, "  " + line_to_add + "\n  end", insert_sentinel
+    end
+  end
+  def add_to_routes
+    file_to_update = Rails.root+'config/routes.rb'
+    line_to_add = "resources :#{plural_name}"
+    insert_sentinel = 'namespace :casein do'
+    gsub_add_once plural_name, file_to_update, "    " + line_to_add, insert_sentinel
+  end
+  
+  def gsub_add_once m, file, line, sentinel
+    unless options[:pretend]
+      gsub_file file, /(#{Regexp.escape("\n#{line}")})/mi do |match|
+        ''
+      end
+      gsub_file file, /(#{Regexp.escape(sentinel)})/mi do |match|
+        "#{match}\n#{line}"
+      end
+    end
+  end
+  def gsub_file(path, regexp, *args, &block)
+    content = File.read(path).gsub(regexp, *args, &block)
+    File.open(path, 'wb') { |file| file.write(content) }
+  end
   
   def field_type(type)
     case type.to_s.to_sym
