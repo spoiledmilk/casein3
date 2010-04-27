@@ -1,4 +1,4 @@
-class Casein::<%= class_name.pluralize %>Controller < CaseinController
+class Casein::<%= class_name.pluralize %>Controller < Casein::CaseinController
   
   def index
 		@<%= plural_name %> = <%= class_name %>.paginate(:all, :page => params[:page])
