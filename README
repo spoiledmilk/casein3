@@ -1,13 +1,6 @@
 Casein3
-=======
 
-Introduction goes here.
+rake casein:install
+rails g casein_scaffold Article title:string body:text
 
-
-Example
-=======
-
-Example goes here.
-
-
-Copyright (c) 2010 [name of plugin creator], released under the MIT license
+Copyright (c) 2010 spoiledmilk, released under the MIT license
