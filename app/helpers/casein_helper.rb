@@ -164,7 +164,7 @@ module CaseinHelper
 	
 protected
 
-  def casein_form_tag_wrapper form_tag, form, model, attribute, options = {}
+  def casein_form_tag_wrapper form_tag, form, obj, attribute, options = {}
       unless options.key? :casein_label
   		  human_attribute_name = attribute.to_s.humanize
       else
@@ -173,8 +173,8 @@ protected
 
   		html = "<p>"
 
-      if model && model.errors.invalid?(attribute)
-  			html += error_message_on(model, attribute, :prepend_text => "#{human_attribute_name} ")
+      if obj && obj.errors.invalid?(attribute)
+  			html += "#{human_attribute_name} #{obj.errors.on(attribute)}"
   		else
   			html += form.label(attribute, human_attribute_name)
   		end

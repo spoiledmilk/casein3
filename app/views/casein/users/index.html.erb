@@ -12,6 +12,7 @@
 		<tr class="<%= 'even' if index.modulo(2) == 0 %> hover">
 			<td><%= link_to user.login, casein_user_path(user) %></td>
 			<td><%= link_to user.name, casein_user_path(user) %></td>
+			<td><%= link_to casein_get_access_level_text(user.access_level), casein_user_path(user) %></td>
 			<td class="delete">
 				<% if user.is_admin? == false || CaseinUser.has_more_than_one_admin %>
 					<% confirm_message = "Are you sure you want to delete #{user.name}?" %>
