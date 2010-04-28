@@ -20,5 +20,5 @@
 
 
 <%% content_for :sidebar do %>
-  <li><a href="<%%= url_for new_casein_<%= singular_name %>_path %>"><%%= casein_show_icon "add" %>Add a new <%= singular_name.humanize.downcase %></a></li>
+	<li><%%= link_to "#{casein_show_icon "add"}Add a new <%= singular_name.humanize.downcase %>".html_safe, new_casein_<%= singular_name %>_path %></li>
 <%% end %>

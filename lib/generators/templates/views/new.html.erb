@@ -13,5 +13,5 @@
 
 
 <%% content_for :sidebar do %>
-  <li><a href="<%%= url_for casein_<%= plural_name %>_path %>"><%%= casein_show_icon "table" %>Back to list</a></li>
+	<li><%%= link_to "#{casein_show_icon "table"}Back to list".html_safe, casein_<%= plural_name %>_path %></li>
 <%% end %>
