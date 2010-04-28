@@ -33,12 +33,12 @@ module CaseinConfigHelper
 	
 	# A list of stylesheet files to include in the page head section
 	def casein_config_stylesheet_includes
-		['/casein/stylesheets/custom.css', '/casein/stylesheets/screen.css', '/casein/stylesheets/elements.css']
+		%w[/casein/stylesheets/custom /casein/stylesheets/screen /casein/stylesheets/elements]
 	end
 	
 	# A list of JavaScript files to include in the page head section
 	def casein_config_javascript_includes
-	 	['/casein/javascripts/jquery.js', '/casein/javascripts/custom.js', '/casein/javascripts/casein.js', '/javascripts/prototype.js']
+	  %w[/casein/javascripts/jquery /casein/javascripts/custom /casein/javascripts/casein rails]
 	end
 
 end
