@@ -173,7 +173,7 @@ protected
 
   		html = "<p>"
 
-      if obj && obj.errors.invalid?(attribute)
+      if obj && obj.errors[attribute].any?
   			html += "#{human_attribute_name} #{obj.errors.on(attribute)}"
   		else
   			html += form.label(attribute, human_attribute_name)
