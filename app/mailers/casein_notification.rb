@@ -1,6 +1,6 @@
 class CaseinNotification < ActionMailer::Base
 	
-	default :from => "ryan@railscasts.com"
+	default :from => casein_config_email_from_address
 	
 	self.template_root = File.join(File.dirname(__FILE__), '..', 'views', 'casein')
 	

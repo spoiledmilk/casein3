@@ -15,4 +15,4 @@ rails fresh-casein-app && cd fresh-casein-app && rails plugin install git@github
 Now, go to: http://localhost:3000/casein/articles
 
 
-Copyright (c) 2010 spoiledmilk, released under the MIT license
+Copyright (c) 2010 Spoiled Milk ApS, released under the MIT license

@@ -1,5 +1,7 @@
 class CaseinScaffoldGenerator < Rails::Generators::NamedBase
+  
   include Rails::Generators::Migration
+  
   argument :attributes, :type => :array, :required => true, :desc => "required"
   class_options :create_model_and_migration => false
   
