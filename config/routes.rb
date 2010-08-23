@@ -1,4 +1,5 @@
-Rails.application.routes.draw do |map|
+Rails.application.routes.draw do
+  
   namespace :casein do
     resources :users do
       member do
@@ -9,6 +10,8 @@ Rails.application.routes.draw do |map|
       post :login, :recover_password
       get :logout
     end
-    root :to => "casein#blank"
+    get :blank, :controller => :casein
+    root :to => "casein#index"
   end
+  
 end

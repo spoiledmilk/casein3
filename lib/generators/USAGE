@@ -1,6 +1,0 @@
-Description:
-    Explain the generator
-
-Example:
-    rails generate casein_scaffold ModelName [field:type another_field:another_type]
-

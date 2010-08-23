@@ -1,0 +1,213 @@
+=Casein - a lightweight Ruby on Rails CMS.
+
+Casein is a plugin that provides scaffolding generators and helper functions to quickly create a clean and minimal CRUD (Create, Read, Update and Delete) interface for your data. It also comes with a pre-rolled user authentication system. As Casein is completely decoupled from the front-end, it can be added to a new or existing Rails project, or used as a standalone CMS to drive platforms built on other technologies.
+
+==Disclaimer
+
+Casein is the in-house CMS framework used by digital agency Spoiled Milk and is being used in many live production websites. This open source project is an attempt to extract and share the core.
+
+Casein is available to use under the terms of the MIT License. See the LICENSE file for more details.
+
+Casein is sponsored by Spoiled Milk (http://www.spoiledmilk.dk) and maintained by Russell Quinn (http://www.russellquinn.com)
+
+Casein 3.x is built for Ruby on Rails 3
+
+==Installation
+
+— Create a new Rails project (or use an existing one) and enter the project directory from a terminal prompt.
+
+— Add the Casein gem to your Gemfile:
+
+	gem 'casein'
+	
+- Then use bundler to install:
+
+  sudo bundle
+	
+— If you have just created a new project, then remember to add your database details to /config/database.yml at this point.
+
+— These installation instructions also assume that you have set up your RAILS_ENV environment variable.
+
+— To enable Casein notification emails (used for new users and forgotten passwords) then add your SMTP server information to your initializers. For example create a new file called initializers/setup_mail.rb and add the following to it:
+
+  ActionMailer::Base.delivery_method = :smtp
+  ActionMailer::Base.raise_delivery_errors = false
+  ActionMailer::Base.smtp_settings = {
+    :tls => false,
+    :address => "mail.yourdomain.com",
+    :port => 25,
+    :domain => "yourdomain.com",
+    :user_name => "donotreply@yourdomain.com",
+    :password => "whatever",
+    :authentication => :login
+  }
+
+— Install Casein configuration files into your project. This should not be run more than once without backing up or merging the generated files, as your customisations will be overwritten:
+
+	rails g casein:install
+	
+— Add Casein assets to your project /public folder. These should not be modified as they may be overwritten in future updates:.
+
+  rails g casein:update
+	
+- Perform a database migration to create the Casein users table:
+
+	rake db:create (if needed)
+	rake db:migrate
+	
+— Run the following Rake task to set up an initial user. The default login and password will be displayed once the task has completed. You should specify your email address. If you set up an SMTP server in your Rails environment then you’ll also receive an email notification about the new account.
+
+  rake casein:users:create_admin email=you@yourdomain.com
+
+— Run your app! (rebooting the web server if applicable)
+
+— You can access Casein at http://yourdomain.com/casein or http://yourdomain.com/admin
+
+<b>Casein should now be running! You should change the default password immediately!</b>
+
+==Usage
+
+The default Casein install supports user authentication. Users may have a status of either ‘admin’ or ‘user’. The former is allowed to add, edit and delete other Casein users. The latter is only allowed to edit their own profile.
+
+Casein is a framework allowing you to quickly build up an interface to edit and create new records from your database model. As well as the user support and user interface, there are many configurations and generators to help you along the way.
+
+==Configuration
+
+<b>app/helpers/casein_config_helper.rb</b>
+
+This is the main Casein configuration file that allows you to change things such as the website name, logo, notification email address, dashboard URL, etc. The options are documented within the file.
+
+<b>views/casein_layouts/_navigation.html.erb</b>
+
+An ERB partial for the navigation tabs. Note that using the scaffolding generator will automatically add tabs into this file, but it can also be manually edited and rearranged.
+
+<b>view/casein_layouts/_right_navigation.html.erb</b>
+
+An ERB partial for the the right navigation tabs. Note that the ‘users’ tab is added automatically for admin users.
+
+<b>/public/casein/javascripts/custom.js & /public/casein/stylesheets/custom.css</b>
+
+The Casein assets are located in /public/casein. These are the only two files you should change. They allow you to add custom JavaScript or CSS to your Casein deployment. These files are not overwritten using the ‘script/generate casein_update’ command.
+
+==Customising
+
+Now that you have the basic Casein installed and configured, you’ll want to extend it so that it actually has some functionality for your project!
+
+<b>Rules and conventions</b>
+
+* Casein extension controllers and helpers should be prefixed with casein_
+* Casein extension controllers should derive from CaseinController and not ApplicationController
+* To set the page title, your controller action should set @casein_page_title. If this is not set, then Casein will use a default created from your project name.
+
+<b>Right bar</b>
+
+The right bar in Casein should be used for view specific actions, e.g. "Add user" for users/index, or "Back to list", "Delete user" for users/show.
+
+To specify the contents of the right bar, you must create a partial with the following filename:
+
+  _[action]_right_bar.html.erb
+
+For example to specify the right bar contents for a Casein extension controller called ‘casein_companies’ and the action ‘new’:
+
+  /app/views/casein_companies/_new_right_bar.html.erb
+
+These files are optional. Casein will generate a blank right bar if it cannot find a matching ERB partial.
+
+<b>Helper functions</b>
+
+There are several Casein helper functions that are automatically available in any of your Casein extension views.
+
+<i>TODO: These will be documented later. For now, just browse the file at /vendor/plugins/casein2/helpers/casein_helper.rb to see what’s available.</i>
+
+<b>Casein version</b>
+
+Your Rails application may discover what version of Casein it is currently running by using the following variables:
+
+  $CASEIN_MAJOR_VERSION - number, e.g. 2
+  $CASEIN_MINOR_VERSION - number, e.g. 0
+  $CASEIN_BUILD_INFO - build number or string, e.g. 231 or 'alpha'
+
+<b>Rake tasks</b>
+
+There are several Casein Rake tasks available to generate test users, or reset the user database. To see what is available, list all Rake commands using:
+
+  rake -T
+
+The Casein Rake tasks are all namespaced with ‘casein:’
+
+==Scaffolding
+
+Casein has a scaffolding generator to automatically create all the views and controllers for your project models. This is the fastest way to add Casein support to your project.
+
+The command to run the scaffolding generator is:
+
+  script/generate casein_scaffold ModelName [field:type, field:type]
+
+Where:
+
+* ModelName – The singular name of your model, e.g. customer
+* field:type – The name of your database fields and their types, e.g. name:string. The field name must match the name in your migrations and the type must be one of the Rails migration types (string, text, integer, float, decimal, datetime, timestamp, time, date, binary, boolean). Note that you do not have to specify all of the fields in your model, but just the ones that you wish to be editable in Casein.
+
+e.g. a typical scaffolding command might look like:
+
+  script/generate casein_scaffold customer name:string age:integer date_of_birth:date is_male:boolean
+
+There are currently two further command line options that can be added to the end of the generate command:
+
+  --force-plural = Forces the generation of a plural ModelName
+  --create-model-and-migration = Also creates a model, migration and tests. By default the scaffold generator will work from existing models, but this option will generate the model files for you. This means you can also use Casein to set up a new project quickly as well.
+
+Once the command has been executed, the generator will:
+
+* Add a new tab for the model to: app/views/casein_layouts/_navigation.html.erb
+* Create a controller with the name: app/controllers/casein_model_controller.erb
+* Add a helper template at: app/helpers/casein_model_helper.rb
+* Add a test template at: test/functional/casein_model_controller_test.rb
+* Add views for index, new, show and their sidebars to: app/views/casein_model/
+* If you restart and run your application now, you’ll be able to log in to Casein and directly edit and create new instances of your model data right away!
+
+However, you’ll probably want to customise your views and side bars and extend your controller to suit your project. The scaffold generator just sets up the defaults for you.
+
+<em>NOTE: Once you start customising the generated scaffolding files, you should be aware that if you run the generator again you should not overwrite the changed files without backing them up first. The generator will warn you each time it finds a file that you’ve customised. If you run the scaffold generator from a new version of Casein, then you should manually merge your backup and the new file. You can of course however, leave your originals untouched.</em>
+
+===Changing form elements / other helpers
+
+Casein will insert form elements suitable for the field types you specified in the command line. However, you may wish to customise these, e.g. swap a text field for a password field, swap an integer field for a select dropdown, or swap a date field for a full calendar picker, etc.
+
+You will find the form used for both new and show in a partial named _form.html.erb
+
+All of the standard Rails form helpers are available, but the Casein versions are prefixed with Casein_. These versions are styled for the Casein interface and have automatic support for validation error reporting.
+
+  casein_text_field form, model, attribute, options = {}
+  casein_password_field form, model, attribute, options = {}
+  casein_text_area form, model, attribute, options = {}
+  casein_text_area_big form, model, attribute, options = {}
+  casein_check_box form, model, attribute, options = {}
+  casein_check_box_group form, model, check_boxes = {}
+  casein_radio_button form, model, attribute, tag_value, options = {}
+  casein_radio_button_group form, model, radio_buttons = {}
+  casein_select form, model, attribute, option_tags, options = {}
+  casein_datetime_select form, model, attribute, options = {}
+  casein_date_select form, model, attribute, options = {}
+  casein_file_field form, model, object_name, attribute, options = {}
+  casein_hidden_field form, model, attribute, options = {}
+
+For more information on each function, check the casein_helper.rb file within the plugin. The method parameters are typically the same as the Rails form tag helpers. There are some extra Casein options that can be passed through as part of the options hash:
+
+  :casein_label – by default the humanized version of the database field name is used as the label, but this will override it with a string of your choice.
+  :casein_button_label – available in casein_radio_button and casein_check_box. Used to give individual buttons their labels.
+  :casein_truncate - may be passed into casein_table_cell_link along with a maximum length to automatically truncate strings and suffix with '...'
+
+===Changing form layout
+
+A basic two-column layout is automatically created by the scaffold generator. The position of form elements is controlled by parent DIVs. A left column element is housed in a “tfContainer” and a right column element in “tfContainer tfContainerSecond”. Note that the generator does not take form element height into account, so you may need to have two sequential matching tfContainer types to balance out some of the larger components, such as the calendar picker.
+
+There is an optional container class that forces form elements to use the whole width of the page. This is “tfContainer tfContainerFullWidth” and if used together with casein_text_area_big will create a textarea suitable for, say, editing full page content.
+
+===Adding styled help blocks
+
+Sometimes it is necessary or useful to add guidelines or help text to your forms and tables. Casein offers a CSS class for this called “help”, which can be used throughout your views as necessary.
+
+==Acknowledgements
+
+The icons used in Casein were created by Mark James and are licensed under the Creative Commons Attribution 2.5 License (http://creativecommons.org/licenses/by/2.5/). The full series of icons are available here: http://www.famfamfam.com/lab/icons/silk/

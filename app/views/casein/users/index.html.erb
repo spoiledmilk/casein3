@@ -10,11 +10,11 @@
 	
 	<% @users.each_with_index do |user, index| %>	
 		<tr class="<%= 'even' if index.modulo(2) == 0 %> hover">
-			<td><%= link_to user.login, casein_user_path(user) %></td>
-			<td><%= link_to user.name, casein_user_path(user) %></td>
-			<td><%= link_to casein_get_access_level_text(user.access_level), casein_user_path(user) %></td>
+			<td><%= casein_table_cell_link user.login, casein_user_path(user) %></td>
+			<td><%= casein_table_cell_link user.name, casein_user_path(user) %></td>
+			<td><%= casein_table_cell_link casein_get_access_level_text(user.access_level), casein_user_path(user) %></td>
 			<td class="delete">
-				<% if user.is_admin? == false || CaseinUser.has_more_than_one_admin %>
+				<% if user.is_admin? == false || Casein::User.has_more_than_one_admin %>
 					<% confirm_message = "Are you sure you want to delete #{user.name}?" %>
 			
 					<% if user.id == @session_user.id %>
@@ -27,7 +27,6 @@
 		</tr>
 	<% end %>
 </table>
-
 
 <% content_for :sidebar do %>
   <li><%= link_to "#{casein_show_icon('add')}Add a new user".html_safe, new_casein_user_path %></li>

@@ -4,15 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-		<title>Casein</title>
-		<%= stylesheet_link_tag casein_config_stylesheet_includes, :cache => "casein_main_stylesheets" %>
-		<%= javascript_include_tag casein_config_javascript_includes, :cache => "casein_main_javascripts" %>
-		<%= yield :calendar_includes %>
+		<title><%= casein_generate_page_title %></title>
+		<%= stylesheet_link_tag casein_config_stylesheet_includes %>
+		<%= javascript_include_tag casein_config_javascript_includes %>
 		<%= csrf_meta_tag %>
 	</head>
 	<body>
 		<div id="header">
-			<h1><%= image_tag(casein_config_logo, :alt => casein_config_website_name) %></h1>
+			<h1><%= link_to(image_tag(casein_config_logo, :alt => casein_config_website_name), :controller => :casein) %></h1>
 			<div id="dashboard">
 				<% if @session_user != nil %>
 				<ul>
@@ -39,7 +38,7 @@
 		<div id="rightBar">
 			<div class="spacer"></div>
 			<ul>
-				<%= yield(:sidebar) %>
+				<%= yield :sidebar %>
 			</ul>
 		</div>
 		<div id="content">

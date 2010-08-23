@@ -15,7 +15,7 @@
 	</div>
 
 	<div class="tfContainer tfContainerSecond">
-		<% if @session_user.is_admin? && CaseinUser.has_more_than_one_admin %>
+		<% if @session_user.is_admin? && (@casein_user.is_admin? == false || Casein::User.has_more_than_one_admin) %>
 			<%= casein_select f, f.object, :access_level, casein_get_access_level_array, {:casein_label => "Status"} %>
 		<% end %>
 	</div>
@@ -81,7 +81,8 @@
 	<% end %>
 <% end %>
 
-
 <% content_for :sidebar do %>
-  <li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
+	<% if @session_user.is_admin? %>
+  	<li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
+	<% end %>
 <% end %>

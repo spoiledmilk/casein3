@@ -5,7 +5,7 @@ require 'rake/rdoctask'
 desc 'Default: run unit tests.'
 task :default => :test
 
-desc 'Test the casein3 plugin.'
+desc 'Test the casein gem.'
 Rake::TestTask.new(:test) do |t|
   t.libs << 'lib'
   t.libs << 'test'
@@ -13,11 +13,27 @@ Rake::TestTask.new(:test) do |t|
   t.verbose = true
 end
 
-desc 'Generate documentation for the casein3 plugin.'
+desc 'Generate documentation for the casein gem.'
 Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'Casein3'
+  rdoc.title    = 'Casein'
   rdoc.options << '--line-numbers' << '--inline-source'
   rdoc.rdoc_files.include('README')
   rdoc.rdoc_files.include('lib/**/*.rb')
+end
+
+begin
+  require "jeweler"
+  Jeweler::Tasks.new do |gem|
+    gem.name = "casein"
+    gem.summary = "A lightweight Ruby on Rails CMS."
+    gem.description = "Casein is an open source CMS for Ruby on Rails, originally developed by Spoiled Milk."
+    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
+    gem.email = "mail@russellquinn.com"
+    gem.authors = ["Russell Quinn", "Spoiled Milk"]
+    gem.homepage = "http://github.com/spoiledmilk/casein3"
+    gem.add_dependency("will_paginate", ["~> 3.0.pre2"])
+  end
+rescue
+  puts "Jeweler or one of its dependencies is not installed."
 end
