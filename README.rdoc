@@ -15,6 +15,7 @@ Casein 3.x is built for Ruby on Rails 3 and has the following major updates:
 * Supplied as a gem
 * Runs as an Engine
 * Now properly namespaced
+* Rails 3 compatibility fixes
 
 ==Installation
 

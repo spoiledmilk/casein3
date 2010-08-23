@@ -1,6 +1,6 @@
 <h2>Add a new user</h2>
 
-<% form_for @casein_user do |form| %>
+<%= form_for @casein_user do |form| %>
 
 	<div class="tfContainer">
 		<%= casein_text_field form, @casein_user, :login, {:size => 30} %>
