@@ -18,7 +18,7 @@ Casein 3.x is built for Ruby on Rails 3
 
 — Add the Casein gem to your Gemfile:
 
-	gem 'casein'
+  gem 'casein'
 	
 - Then use bundler to install:
 
@@ -44,16 +44,16 @@ Casein 3.x is built for Ruby on Rails 3
 
 — Install Casein configuration files into your project. This should not be run more than once without backing up or merging the generated files, as your customisations will be overwritten:
 
-	rails g casein:install
+  rails g casein:install
 	
 — Add Casein assets to your project /public folder. These should not be modified as they may be overwritten in future updates:.
 
   rails g casein:update
 	
 - Perform a database migration to create the Casein users table:
-
-	rake db:create (if needed)
-	rake db:migrate
+ 
+  rake db:create (if needed)
+  rake db:migrate
 	
 — Run the following Rake task to set up an initial user. The default login and password will be displayed once the task has completed. You should specify your email address. If you set up an SMTP server in your Rails environment then you’ll also receive an email notification about the new account.
 
@@ -104,10 +104,10 @@ Now that you have the basic Casein installed and configured, you’ll want to ex
 The right bar in Casein should be used for view specific actions, e.g. "Add user" for users/index, or "Back to list", "Delete user" for users/show.
 
 To specify the contents of the sidebar, you must add a 'content_for :sidebar' block in the relevant view file (index, show, etc.) e.g.:
-
-	<% content_for :sidebar do %>
-  	<li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
-	<% end %>
+ 
+  <% content_for :sidebar do %>
+    <li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
+  <% end %>
 
 <b>Helper functions</b>
 
@@ -119,7 +119,7 @@ There are several Casein helper functions that are automatically available in an
 
 Your Rails application may discover what version of Casein it is currently running by calling the function:
 
-	casein_get_version_info
+  casein_get_version_info
 
 This will return an array with the keys 'major', 'minor' and 'patch'.
 
