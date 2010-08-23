@@ -15,6 +15,7 @@ module Casein
   			copy_file "public/casein/javascripts/casein.js", "public/casein/javascripts/casein.js"
   			copy_file "public/casein/javascripts/login.js", "public/casein/javascripts/login.js"
   			copy_file "public/casein/javascripts/jquery.js", "public/casein/javascripts/jquery.js"
+  			copy_file "public/casein/javascripts/rails.js", "public/casein/javascripts/rails.js"
 
         #images
         copy_file "public/casein/images/header.png", "public/casein/images/header.png"
