@@ -10,7 +10,11 @@ Casein is available to use under the terms of the MIT License. See the LICENSE f
 
 Casein is sponsored by Spoiled Milk (http://www.spoiledmilk.dk) and maintained by Russell Quinn (http://www.russellquinn.com)
 
-Casein 3.x is built for Ruby on Rails 3
+Casein 3.x is built for Ruby on Rails 3 and has the following major updates:
+
+* Supplied as a gem
+* Runs as an Engine
+* Now properly namespaced
 
 ==Installation
 
