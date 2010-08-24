@@ -155,8 +155,7 @@ e.g. a typical scaffolding command might look like:
 
 There are currently two further command line options that can be added to the end of the generate command:
 
-  --force-plural = Forces the generation of a plural ModelName
-  --create-model-and-migration = Also creates a model and migration. By default the scaffold generator will work from existing models, but this option will generate the model files for you. This means you can also use Casein to set up a new project quickly as well.
+  --create-model-and-migration = Also creates a model and migration. By default the scaffold generator will work from existing models, but this option will generate the model and database migration files for you. This means you can also use Casein to set up a new project quickly as well.
 
 Once the command has been executed, the generator will:
 

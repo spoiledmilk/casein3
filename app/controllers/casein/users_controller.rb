@@ -29,8 +29,8 @@ module Casein
     end
   
     def show
-      @casein_page_title = @casein_user.name + " | View User"
     	@casein_user = Casein::User.find params[:id]
+    	@casein_page_title = @casein_user.name + " | View User"
     end
  
     def update
@@ -53,9 +53,9 @@ module Casein
     end
  
     def update_password
-      @casein_page_title = @casein_user.name + " | Update Password"
       @casein_user = Casein::User.find params[:id]
-      
+      @casein_page_title = @casein_user.name + " | Update Password"
+       
       if @casein_user.valid_password? params[:form_current_password]
         if @casein_user.update_attributes params[:casein_user]
           flash.now[:notice] = "Your password has been changed"
@@ -70,9 +70,9 @@ module Casein
     end
  
     def reset_password
-      @casein_page_title = @casein_user.name + " | Reset Password"
       @casein_user = Casein::User.find params[:id]
-      
+      @casein_page_title = @casein_user.name + " | Reset Password"
+       
       @casein_user.notify_of_new_password = true unless @casein_user.id == @session_user.id
       
       if @casein_user.update_attributes params[:casein_user]

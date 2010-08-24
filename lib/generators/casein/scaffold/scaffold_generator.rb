@@ -1,6 +1,7 @@
 module Casein
   class ScaffoldGenerator < Rails::Generators::NamedBase
   
+    include Casein::CaseinHelper
     include Rails::Generators::Migration
     source_root File.expand_path('../templates', __FILE__)
   
@@ -21,9 +22,10 @@ module Casein
       template 'views/index.html.erb', "app/views/casein/#{plural_name}/index.html.erb"
       template 'views/show.html.erb', "app/views/casein/#{plural_name}/show.html.erb"
       template 'views/new.html.erb', "app/views/casein/#{plural_name}/new.html.erb"
-      template 'views/_fields.html.erb', "app/views/casein/#{plural_name}/_fields.html.erb"
+      template 'views/_form.html.erb', "app/views/casein/#{plural_name}/_form.html.erb"
+      template 'views/_table.html.erb', "app/views/casein/#{plural_name}/_table.html.erb"
       
-      add_to_routes_namespace
+      add_namespace_to_routes
       add_to_routes
       add_to_navigation
       
@@ -35,28 +37,31 @@ module Casein
   
   protected
   
-    def add_to_navigation
-      file_to_update = 'app/views/casein/layouts/_navigation.html.erb'
-      line_to_add = "<li id=\"visitSite\"><%= link_to \"#{plural_name.humanize.capitalize}\", casein_#{plural_name}_path %></li>"
-      insert_sentinel = '<!-- SCAFFOLD_INSERT -->'
-      gsub_add_once plural_name, file_to_update, line_to_add, insert_sentinel
-    end
-  
-    #replacement for standard Rails generator route_resources. This one only adds once
-    def add_to_routes_namespace
-      file_to_update = Rails.root+'config/routes.rb'
+    #replacements for standard Rails generator route. This one only adds once
+    def add_namespace_to_routes
+      puts "   casein     adding namespace to routes.rb"
+      file_to_update = Rails.root + 'config/routes.rb'
       line_to_add = "namespace :casein do"
-      insert_sentinel = 'Application.routes.draw do |map|'
+      insert_sentinel = 'Application.routes.draw do'
       if File.read(file_to_update).scan(/(#{Regexp.escape("#{line_to_add}")})/mi).blank?
-        gsub_add_once plural_name, file_to_update, "  " + line_to_add + "\n  end", insert_sentinel
+        gsub_add_once plural_name, file_to_update, "\n\t#Casein routes\n\t" + line_to_add + "\n\tend\n", insert_sentinel
       end
     end
     
     def add_to_routes
-      file_to_update = Rails.root+'config/routes.rb'
+      puts "   casein     adding #{plural_name} resources to routes.rb"
+      file_to_update = Rails.root + 'config/routes.rb'
       line_to_add = "resources :#{plural_name}"
       insert_sentinel = 'namespace :casein do'
-      gsub_add_once plural_name, file_to_update, "    " + line_to_add, insert_sentinel
+      gsub_add_once plural_name, file_to_update, "\t\t" + line_to_add, insert_sentinel
+    end
+
+    def add_to_navigation
+      puts "   casein     adding #{plural_name} to left navigation bar"
+      file_to_update = Rails.root + 'app/views/casein/layouts/_left_navigation.html.erb'
+      line_to_add = "<li id=\"visitSite\"><%= link_to \"#{plural_name.humanize.capitalize}\", casein_#{plural_name}_path %></li>"
+      insert_sentinel = '<!-- SCAFFOLD_INSERT -->'
+      gsub_add_once plural_name, file_to_update, line_to_add, insert_sentinel
     end
   
     def gsub_add_once m, file, line, sentinel
