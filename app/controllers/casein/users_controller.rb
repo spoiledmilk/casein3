@@ -22,7 +22,7 @@ module Casein
         flash[:notice] = "An email has been sent to " + @casein_user.name + " with the new account details"
         redirect_to casein_users_path
       else
-        flash[:warning] = "There were problems when trying to create a new user"
+        flash.now[:warning] = "There were problems when trying to create a new user"
         render :action => :new
       end
     end
@@ -39,7 +39,7 @@ module Casein
       if @casein_user.update_attributes params[:casein_user]
         flash[:notice] = @casein_user.name + " has been updated"
       else
-        flash[:warning] = "There were problems when trying to update this user"
+        flash.now[:warning] = "There were problems when trying to update this user"
         render :action => :show
         return
       end
@@ -55,16 +55,14 @@ module Casein
       @casein_user = Casein::User.find params[:id]
       @casein_page_title = @casein_user.name + " | Update Password"
     
-      if user_to_update = Casein::User.authenticate(@casein_user.login, params[:form_current_password])
-        @casein_user = user_to_update
-        @casein_user.updating_password = true
-        if @casein_user.update_attributes(params[:casein_user])
-          flash[:notice] = "Password has been changed and a notification sent to " + @casein_user.email
+      if @casein_user.valid_password? params[:form_current_password]
+        if @casein_user.update_attributes params[:casein_user]
+          flash.now[:notice] = "Your password has been changed"
         else
-          flash[:warning] = "There were problems when trying to change the password"
+          flash.now[:warning] = "There were problems when trying to change the password"
         end
       else
-        flash[:warning] = "The current password is incorrect"
+        flash.now[:warning] = "The current password is incorrect"
       end
       
       render :action => :show
@@ -74,11 +72,17 @@ module Casein
       @casein_user = Casein::User.find params[:id]
       @casein_page_title = @casein_user.name + " | Reset Password"
       
-      @casein_user.updating_password = true
+      @casein_user.notify_of_new_password = true unless @casein_user.id == @session_user.id
+      
       if @casein_user.update_attributes params[:casein_user]
-        flash[:notice] = "Password has been reset and " + @casein_user.name + " has been notified by email"
+        if @casein_user.id == @session_user.id
+          flash.now[:notice] = "Your password has been reset"
+        else    
+          flash.now[:notice] = "Password has been reset and " + @casein_user.name + " has been notified by email"
+        end
+        
       else
-        flash[:warning] = "There were problems when trying to reset this user's password"
+        flash.now[:warning] = "There were problems when trying to reset this user's password"
       end
       render :action => :show
     end
@@ -86,7 +90,6 @@ module Casein
     def destroy
       user = Casein::User.find params[:id]
       if user.is_admin? == false || Casein::User.has_more_than_one_admin
-        clear_session_and_cookies if user.id == @session_user.id
         user.destroy
         flash[:notice] = user.name + " has been deleted"
       end

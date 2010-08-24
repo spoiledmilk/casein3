@@ -1,0 +1,66 @@
+<%= form_for @user_session, :url => casein_user_session_path do |f| %>
+
+	<% if @user_session.errors.any? %>
+		<div class="error">
+			<p>
+				<% @user_session.errors.keys.each do |key| %>
+					<%= (key.to_s.humanize + " ") unless key == :base %>
+					<%=  @user_session.errors[key].first %>
+				<% end %>
+			</p>
+		</div>
+	<% end %>
+
+	<% if flash[:warning] %>
+		<div class="error">
+			<p><%= flash[:warning] %></p>
+		</div>
+	<% end %>
+
+	<% if flash[:notice] %>
+		<div class="notice">
+			<p><%= flash[:notice] %></p>
+		</div>
+	<% end %>
+
+	<div class="text" style="margin-bottom:10px;">
+		<p>
+			<%= f.label :login, "Login:" %>
+		  <%= f.text_field :login, :class => "caseinTextField" %>
+		</p>
+	</div>
+
+	<div class="text">
+		<p>
+			<%= f.label :password, "Password:" %>
+		  <%= f.password_field :password, :class => "caseinTextField" %>
+		</p>
+	</div>
+	
+	<div class="submit_remember">
+		<p>
+			<%= f.check_box :remember_me %> Remember me
+			<br /><br />
+			<%= f.submit "Log in", :class => "caseinSubmit" %>
+			<input type="button" value="Forgotten password?" class="caseinSubmitBlue" onclick="toggleDiv('recover');" />
+		</p>
+	</div>
+
+<% end %>
+
+<%= form_tag casein_password_reset_url do %>
+	<div id="recover">
+	
+		<div class="text">
+			<p>
+				<%= label_tag :recover_email, "Email:" %>
+				<%= text_field_tag :recover_email, params[:recover_email], :class => "caseinTextField" %>
+			</p>
+		</div>
+		<div class="submit_remember">
+			<p>
+				<%= submit_tag "Reset", :class => "caseinSubmit" %>
+			</p>
+		</div>
+	</div>
+<% end %>

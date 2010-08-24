@@ -9,23 +9,25 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Russell Quinn", "Spoiled Milk"]
-  s.date = %q{2010-08-23}
+  s.date = %q{2010-08-24}
   s.description = %q{Casein is an open source CMS for Ruby on Rails, originally developed by Spoiled Milk.}
   s.email = %q{mail@russellquinn.com}
   s.extra_rdoc_files = [
     "README.rdoc"
   ]
   s.files = [
-    "app/controllers/casein/auth_controller.rb",
-     "app/controllers/casein/casein_controller.rb",
+    "app/controllers/casein/casein_controller.rb",
+     "app/controllers/casein/user_sessions_controller.rb",
      "app/controllers/casein/users_controller.rb",
      "app/helpers/casein/casein_helper.rb",
      "app/mailers/casein/casein_notification.rb",
      "app/models/casein/user.rb",
+     "app/models/casein/user_session.rb",
      "app/views/casein/auth/show.html.erb",
      "app/views/casein/casein/blank.html.erb",
      "app/views/casein/casein_notification/generate_new_password.erb",
      "app/views/casein/casein_notification/new_user_information.erb",
+     "app/views/casein/user_sessions/new.html.erb",
      "app/views/casein/users/index.html.erb",
      "app/views/casein/users/new.html.erb",
      "app/views/casein/users/show.html.erb",
@@ -73,6 +75,7 @@ Gem::Specification.new do |s|
      "lib/generators/casein/update/templates/public/casein/javascripts/casein.js",
      "lib/generators/casein/update/templates/public/casein/javascripts/jquery.js",
      "lib/generators/casein/update/templates/public/casein/javascripts/login.js",
+     "lib/generators/casein/update/templates/public/casein/javascripts/rails.js",
      "lib/generators/casein/update/templates/public/casein/stylesheets/elements.css",
      "lib/generators/casein/update/templates/public/casein/stylesheets/login.css",
      "lib/generators/casein/update/templates/public/casein/stylesheets/screen.css",
@@ -95,11 +98,14 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_runtime_dependency(%q<authlogic>, ["= 2.1.6"])
     else
       s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+      s.add_dependency(%q<authlogic>, ["= 2.1.6"])
     end
   else
     s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
+    s.add_dependency(%q<authlogic>, ["= 2.1.6"])
   end
 end
 

@@ -17,7 +17,7 @@
 				<ul>
 					<li>Hello <%= @session_user.name %></li>
 					<li><%= link_to 'Profile', casein_user_path(@session_user) %></li>
-					<li class="lastItem"><%= link_to 'Logout', logout_casein_auth_path %></li>
+					<li class="lastItem"><%= link_to 'Logout', casein_user_session_url, :method => :delete %></li>
 				</ul>	
 				<% end %>
 			</div>

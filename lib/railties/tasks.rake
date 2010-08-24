@@ -1,3 +1,5 @@
+require 'authlogic'
+
 namespace :casein do
     
   namespace :users do
@@ -7,9 +9,13 @@ namespace :casein do
     
   		raise "Usage: specify email address, e.g. rake [task] email=mail@caseincms.com" unless ENV.include?("email")
   		    
-      admin = Casein::User.new( {:login => 'admin', :name => 'Admin', :email => ENV['email'], :access_level => $CASEIN_USER_ACCESS_LEVEL_ADMIN, :form_password_confirmation => 'password', :form_password => 'password'} )
-      admin.save
-      puts "[Casein] Created new admin user with login 'admin' and password 'password'"      
+      admin = Casein::User.new( {:login => 'admin', :name => 'Admin', :email => ENV['email'], :access_level => $CASEIN_USER_ACCESS_LEVEL_ADMIN, :password => 'password', :password_confirmation => 'password'} )
+      
+      unless admin.save
+        puts "[Casein] Failed: check that the 'admin' account doesn't already exist."
+      else
+        puts "[Casein] Created new admin user with login 'admin' and password 'password'"
+      end      
     end
 
     desc "Remove all users"

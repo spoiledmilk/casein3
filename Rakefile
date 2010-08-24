@@ -33,6 +33,7 @@ begin
     gem.authors = ["Russell Quinn", "Spoiled Milk"]
     gem.homepage = "http://github.com/spoiledmilk/casein3"
     gem.add_dependency("will_paginate", ["~> 3.0.pre2"])
+    gem.add_dependency("authlogic", ["2.1.6"])
   end
 rescue
   puts "Jeweler or one of its dependencies is not installed."

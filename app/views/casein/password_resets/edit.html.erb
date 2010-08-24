@@ -1,0 +1,48 @@
+<%= form_for @reset_user, :url => casein_password_reset_path do |f| %>
+
+	<% if @reset_user.errors.any? %>
+		<div class="error">
+			<p>
+				<% @reset_user.errors.keys.each do |key| %>
+					<%= (key.to_s.humanize + " ") unless key == :base %>
+					<%=  @reset_user.errors[key].first %>
+				<% end %>
+			</p>
+		</div>
+	<% end %>
+
+	<% if flash[:warning] %>
+		<div class="error">
+			<p><%= flash[:warning] %></p>
+		</div>
+	<% end %>
+
+	<% if flash[:notice] %>
+		<div class="notice">
+			<p><%= flash[:notice] %></p>
+		</div>
+	<% end %>
+
+	<%= hidden_field_tag :token, params[:token] %>
+
+	<div class="text">
+		<p>
+			<%= f.label :password, "Password:" %>
+		  <%= f.password_field :password, :class => "caseinTextField" %>
+		</p>
+	</div>
+
+	<div class="text">
+		<p>
+			<%= f.label :password_confirmation, "Confirm password:" %>
+		  <%= f.password_field :password_confirmation, :class => "caseinTextField" %>
+		</p>
+	</div>
+	
+	<div class="submit_remember">
+		<p>
+			<%= f.submit "Reset password", :class => "caseinSubmit" %>
+		</p>
+	</div>
+
+<% end %>

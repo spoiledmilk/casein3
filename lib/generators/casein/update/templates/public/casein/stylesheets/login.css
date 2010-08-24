@@ -72,7 +72,12 @@ body {
 	border: medium none;
 	color: #fff;
 	font-size: 10px;
-	padding: 4px 5px 3px 5px;
+	padding: 4px 5px 5px 5px;
+	cursor: pointer;
+}
+
+#content .caseinSubmit:hover {
+	background: #4ebf26;
 }
 
 #content .caseinSubmitBlue {
@@ -80,7 +85,12 @@ body {
 	border: medium none;
 	color: #fff;
 	font-size: 10px;
-	padding: 4px 5px 3px 5px;
+	padding: 4px 5px 5px 5px;
+	cursor: pointer;
+}
+
+#content .caseinSubmitBlue:hover {
+	background: #71b4ff;
 }
 
 #content .error {

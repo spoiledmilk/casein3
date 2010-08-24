@@ -6,10 +6,10 @@ Rails.application.routes.draw do
         put :update_password, :reset_password
       end
     end
-    resource :auth, :controller => :auth do
-      post :login, :recover_password
-      get :logout
-    end
+    
+    resource :user_session
+    resource :password_reset, :only => [:create, :edit, :update]
+        
     get :blank, :controller => :casein
     root :to => "casein#index"
   end

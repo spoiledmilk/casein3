@@ -110,7 +110,7 @@ The right bar in Casein should be used for view specific actions, e.g. "Add user
 
 To specify the contents of the sidebar, you must add a 'content_for :sidebar' block in the relevant view file (index, show, etc.) e.g.:
  
-  <% content_for :sidebar do %>
+  <%= content_for :sidebar do %>
     <li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
   <% end %>
 

@@ -1,3 +1,5 @@
+require 'authlogic'
+
 module Casein
   class CaseinController < ApplicationController
 
@@ -10,9 +12,10 @@ module Casein
   	include Casein::ConfigHelper
 
     layout 'casein_main'
-    before_filter :login_from_cookie
+   
+    helper_method :current_user_session, :current_user
     before_filter :authorise
-
+    
     ActionView::Base.field_error_proc = proc { |input, instance| "<span class='formError'>#{input}</span>".html_safe }
 
     def index		
@@ -26,31 +29,21 @@ module Casein
   private
   
     def authorise    
-      @session_user = casein_get_session_user
-  		unless @session_user
-  		  session[:original_uri] = request.fullpath
-  		  redirect_to casein_auth_path
-  		end
-  	end
-	
-  	def login_from_cookie
-      if @session_user.blank? and cookies[:remember_me_id] and cookies[:remember_me_code]
-        user = Casein::User.find(cookies[:remember_me_id])
-        if create_user_code(user) == cookies[:remember_me_code]
-          session[:casein_user_id] = user.id
-        end
+      unless current_user
+        session[:return_to] = request.fullpath
+        redirect_to new_casein_user_session_url
+        return false
       end
     end
   
-    def clear_session_and_cookies
-      session[:casein_user_id] = nil
-		
-  		cookies.delete(:remember_me_id) if cookies[:remember_me_id]
-      cookies.delete(:remember_me_code) if cookies[:remember_me_code]
+    def current_user_session
+      return @current_user_session if defined?(@current_user_session)
+      @current_user_session = Casein::UserSession.find
     end
-	
-  	def create_user_code user
-      Digest::SHA1.hexdigest(user.email)[4,18]
+
+    def current_user
+      return @session_user if defined?(@session_user)
+      @session_user = current_user_session && current_user_session.user
     end
   
     def needs_admin
@@ -63,6 +56,11 @@ module Casein
       unless @session_user.is_admin? || params[:id].to_i == @session_user.id
         redirect_to :controller => :casein, :action => :index
       end
+    end
+    
+    def redirect_back_or_default(default)
+      redirect_to(session[:return_to] || default)
+      session[:return_to] = nil
     end
 
   end

@@ -15,10 +15,6 @@ module Casein
   	  "v.#{version_info['major']}"
   	end
 	
-  	def casein_get_session_user
-  		Casein::User.find_by_id session[:casein_user_id]
-  	end
-	
   	def casein_generate_page_title
 		
   		if @casein_page_title.nil?

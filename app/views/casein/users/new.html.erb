@@ -19,11 +19,11 @@
 	</div>
 	
 	<div class="tfContainer">
-		<%= casein_password_field form, @casein_user, :form_password, {:casein_label => "Password"} %>
+		<%= casein_password_field form, @casein_user, :password, {:casein_label => "Password"} %>
 	</div>
 	
 	<div class="tfContainer tfContainerSecond">
-		<%= casein_password_field form, @casein_user, :form_password_confirmation, {:casein_label => "Repeat password"} %>
+		<%= casein_password_field form, @casein_user, :password_confirmation, {:casein_label => "Repeat password"} %>
 	</div>
 
 	<div class="clearer"></div>
@@ -34,6 +34,6 @@
 
 <% end %>
 
-<% content_for :sidebar do %>
+<%= content_for :sidebar do %>
   <li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
 <% end %>

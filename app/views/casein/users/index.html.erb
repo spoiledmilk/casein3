@@ -28,6 +28,6 @@
 	<% end %>
 </table>
 
-<% content_for :sidebar do %>
+<%= content_for :sidebar do %>
   <li><%= link_to "#{casein_show_icon('add')}Add a new user".html_safe, new_casein_user_path %></li>
 <% end %>

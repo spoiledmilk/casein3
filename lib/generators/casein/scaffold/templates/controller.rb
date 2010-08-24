@@ -24,7 +24,7 @@ module Casein
         flash[:notice] = '<%= singular_name.humanize.capitalize %> created'
         redirect_to casein_<%= plural_name %>_path
       else
-        flash[:warning] = 'There were problems when trying to create a new <%= singular_name.humanize.downcase %>'
+        flash.now[:warning] = 'There were problems when trying to create a new <%= singular_name.humanize.downcase %>'
         render :action => :new
       end
     end
@@ -36,7 +36,7 @@ module Casein
         flash[:notice] = '<%= singular_name.humanize.capitalize %> has been updated'
         redirect_to casein_<%= plural_name %>_path
       else
-        flash[:warning] = 'There were problems when trying to update this <%= singular_name.humanize.downcase %>'
+        flash.now[:warning] = 'There were problems when trying to update this <%= singular_name.humanize.downcase %>'
         render :action => :show
       end
     end
