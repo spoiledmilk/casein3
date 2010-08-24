@@ -28,7 +28,7 @@ begin
     gem.name = "casein"
     gem.summary = "A lightweight Ruby on Rails CMS."
     gem.description = "Casein is an open source CMS for Ruby on Rails, originally developed by Spoiled Milk."
-    gem.files = Dir["{lib}/**/*", "{app}/**/*", "{config}/**/*"]
+    gem.files = Dir["Gemfile", "MIT-LICENSE", "Rakefile", "README.rdoc", "{lib}/**/*", "{app}/**/*", "{config}/**/*"]
     gem.email = "mail@russellquinn.com"
     gem.authors = ["Russell Quinn", "Spoiled Milk"]
     gem.homepage = "http://github.com/spoiledmilk/casein3"

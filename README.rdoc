@@ -25,9 +25,9 @@ Casein 3.x is built for Ruby on Rails 3 and has the following major updates:
 
   gem 'casein'
 	
-- Then use bundler to install:
+- Then use bundler to install Casein and its dependencies:
 
-  sudo bundle
+  sudo bundle install
 	
 — If you have just created a new project, then remember to add your database details to /config/database.yml at this point.
 

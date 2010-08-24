@@ -17,9 +17,9 @@ module Casein
         end
 
         if users.length > 1
-          flash[:notice] = "Multiple accounts were found. Emails have been sent to " + params[:recover_email] + " with instructions of how to reset your passwords"
+          flash[:notice] = "Multiple accounts were found. Emails have been sent to " + params[:recover_email] + " with instructions on how to reset your passwords"
         else
-          flash[:notice] = "An email has been sent to " + params[:recover_email] + " with instructions of how to reset your password"
+          flash[:notice] = "An email has been sent to " + params[:recover_email] + " with instructions on how to reset your password"
         end
       else
         flash[:warning] = "There is no user with that email"

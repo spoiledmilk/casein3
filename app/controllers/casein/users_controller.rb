@@ -1,18 +1,18 @@
 module Casein
   class UsersController < Casein::CaseinController
-  
+
     unloadable
   
     before_filter :needs_admin, :except => [:show, :destroy, :update, :update_password]
     before_filter :needs_admin_or_current_user, :only => [:show, :destroy, :update, :update_password]
  
     def index
-    	@users = Casein::User.order(:login)
+    	@users = Casein::User.paginate :order => "login", :page => params[:page]
     end
  
     def new
-      @casein_page_title = "Add a new user"
     	@casein_user = Casein::User.new
+    	@casein_page_title = "Add a new user"
     end
   
     def create
