@@ -1,12 +1,12 @@
 module Casein
   class <%= class_name.pluralize %>Controller < Casein::CaseinController
   
-    ## optional filters for defining usage according to casein_users access_levels
+    ## optional filters for defining usage according to Casein::Users access_levels
     # before_filter :needs_admin, :except => [:action1, :action2]
     # before_filter :needs_admin_or_current_user, :only => [:action1, :action2]
   
     def index
-  		@<%= plural_name %> = <%= class_name %>.all
+  		@<%= plural_name %> = <%= class_name %>.paginate :page => params[:page]
     end
   
     def show
