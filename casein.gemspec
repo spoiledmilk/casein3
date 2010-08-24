@@ -57,6 +57,7 @@ Gem::Specification.new do |s|
      "lib/generators/casein/scaffold/templates/migration.rb",
      "lib/generators/casein/scaffold/templates/model.rb",
      "lib/generators/casein/scaffold/templates/views/_form.html.erb",
+     "lib/generators/casein/scaffold/templates/views/_table.html.erb",
      "lib/generators/casein/scaffold/templates/views/index.html.erb",
      "lib/generators/casein/scaffold/templates/views/new.html.erb",
      "lib/generators/casein/scaffold/templates/views/show.html.erb",
