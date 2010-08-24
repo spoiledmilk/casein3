@@ -22,6 +22,10 @@ module Casein
         copy_file "app/views/casein/layouts/_left_navigation.html.erb", "app/views/casein/layouts/_left_navigation.html.erb"
         copy_file "app/views/casein/layouts/_right_navigation.html.erb", "app/views/casein/layouts/_right_navigation.html.erb"
       
+        #robots.txt
+        puts " ** Overwrite if you haven't yet modified your robots.txt, otherwise add disallow rules for /casein and /admin manually **"
+        copy_file "public/robots.txt", "public/robots.txt"
+      
         #blank stylesheets and JavaScript files
   			copy_file "public/casein/stylesheets/custom.css", "public/casein/stylesheets/custom.css"
   			copy_file "public/casein/javascripts/custom.js", "public/casein/javascripts/custom.js"
