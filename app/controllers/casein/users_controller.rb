@@ -7,12 +7,13 @@ module Casein
     before_filter :needs_admin_or_current_user, :only => [:show, :destroy, :update, :update_password]
  
     def index
+      @casein_page_title = "Users"
     	@users = Casein::User.paginate :order => "login", :page => params[:page]
     end
  
     def new
+      @casein_page_title = "Add a new user"
     	@casein_user = Casein::User.new
-    	@casein_page_title = "Add a new user"
     end
   
     def create
@@ -28,13 +29,13 @@ module Casein
     end
   
     def show
+      @casein_page_title = @casein_user.name + " | View User"
     	@casein_user = Casein::User.find params[:id]
-    	@casein_page_title = @casein_user.name + " | View User"
     end
  
     def update
-      @casein_user = Casein::User.find params[:id]
       @casein_page_title = @casein_user.name + " | Update User"
+      @casein_user = Casein::User.find params[:id]
 
       if @casein_user.update_attributes params[:casein_user]
         flash[:notice] = @casein_user.name + " has been updated"
@@ -52,9 +53,9 @@ module Casein
     end
  
     def update_password
-      @casein_user = Casein::User.find params[:id]
       @casein_page_title = @casein_user.name + " | Update Password"
-    
+      @casein_user = Casein::User.find params[:id]
+      
       if @casein_user.valid_password? params[:form_current_password]
         if @casein_user.update_attributes params[:casein_user]
           flash.now[:notice] = "Your password has been changed"
@@ -69,8 +70,8 @@ module Casein
     end
  
     def reset_password
-      @casein_user = Casein::User.find params[:id]
       @casein_page_title = @casein_user.name + " | Reset Password"
+      @casein_user = Casein::User.find params[:id]
       
       @casein_user.notify_of_new_password = true unless @casein_user.id == @session_user.id
       
