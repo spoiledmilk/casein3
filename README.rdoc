@@ -60,7 +60,7 @@ Casein 3.x is built for Ruby on Rails 3 and has the following major updates:
 
   rails g casein:update
 	
-- Perform a database migration to create the Casein users table:
+— Perform a database migration to create the Casein users table:
  
   rake db:create (if needed)
   rake db:migrate
