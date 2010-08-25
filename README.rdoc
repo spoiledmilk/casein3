@@ -20,6 +20,7 @@ Casein 3.x is built for Ruby on Rails 3 and has the following major updates:
 * Now properly namespaced
 * Timezone support
 * Rails 3 compatibility fixes
+* Many other tweaks and improvements over Casein 2.x
 
 ==Installation
 
