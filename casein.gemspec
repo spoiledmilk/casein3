@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Russell Quinn", "Spoiled Milk"]
-  s.date = %q{2010-08-24}
+  s.date = %q{2010-08-25}
   s.description = %q{Casein is an open source CMS for Ruby on Rails, originally developed by Spoiled Milk.}
   s.email = %q{mail@russellquinn.com}
   s.extra_rdoc_files = [
