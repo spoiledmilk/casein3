@@ -1,16 +1,18 @@
 module Casein
   module CaseinHelper
 	
-	  def casein_get_version_info
-	    YAML::load_file File.join(File.dirname(__FILE__), '..', '..', '..', 'VERSION.yml')
+	  def casein_get_version_info  
+	    #YAML::load_file File.join(File.dirname(__FILE__), '..', '..', '..', 'VERSION.yml')
 	  end
 	
   	def casein_get_full_version_string
+  	  return "3.0.0"
   	  version_info = casein_get_version_info
   	  "v.#{version_info['major']}.#{version_info['minor']}.#{version_info['patch']}"
   	end
 	
   	def casein_get_short_version_string
+  	  return "3.0"
   	  version_info = casein_get_version_info
   	  "v.#{version_info['major']}"
   	end

@@ -1,9 +1,8 @@
 module Casein
   
-  require 'casein/config_helper'
-	include Casein::ConfigHelper
-	  
   class CaseinNotification < ActionMailer::Base
+	
+		helper Casein::ConfigHelper
 	
   	default :from => casein_config_email_from_address
 
