@@ -114,6 +114,8 @@ To specify the contents of the sidebar, you must add a 'content_for :sidebar' bl
     <li><%= link_to "#{casein_show_icon('table')}Back to list".html_safe, casein_users_path %></li>
   <% end %>
 
+The casein_show_icon function will display any icon present in the /public/casein/images/icons folder. By default this only contains add, delete and table after install. However, more can be added as required by downloading from http://www.famfamfam.com/lab/icons/silk/
+
 <b>Helper functions</b>
 
 There are several Casein helper functions that are automatically available in any of your Casein extension views.

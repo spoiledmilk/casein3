@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  match "/admin" => redirect("/casein")
+  
   namespace :casein do
     resources :users do
       member do
