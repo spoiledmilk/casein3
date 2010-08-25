@@ -28,19 +28,19 @@ module Casein
     end
 	
   	def send_create_notification
-      Casein::CaseinNotification.new_user_information(self, casein_config_hostname, @password).deliver
+      Casein::CaseinNotification.new_user_information(casein_config_email_from_address, self, casein_config_hostname, @password).deliver
     end
   
     def send_update_notification
       if notify_of_new_password
         notify_of_new_password = false
-        Casein::CaseinNotification.generate_new_password(self, casein_config_hostname, @password).deliver
+        Casein::CaseinNotification.generate_new_password(casein_config_email_from_address, self, casein_config_hostname, @password).deliver
       end
     end
     
     def send_password_reset_instructions
       reset_perishable_token!
-      Casein::CaseinNotification.password_reset_instructions(self, casein_config_hostname).deliver
+      Casein::CaseinNotification.password_reset_instructions(casein_config_email_from_address, self, casein_config_hostname).deliver
     end
     
     def check_time_zone
