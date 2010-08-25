@@ -2,6 +2,8 @@
 
 Casein is a plugin that provides scaffolding generators and helper functions to quickly create a clean and minimal CRUD (Create, Read, Update and Delete) interface for your data. It also comes with a pre-rolled user authentication system. As Casein is completely decoupled from the front-end, it can be added to a new or existing Rails project, or used as a standalone CMS to drive platforms built on other technologies.
 
+This version of Casein is designed for Ruby on Rails 3.x. For a version compatible with Rails 2.x, see: http://github.com/spoiledmilk/casein
+
 ==Disclaimer
 
 Casein is the in-house CMS framework used by digital agency Spoiled Milk and is being used in many live production websites. This open source project is an attempt to extract and share the core.
@@ -15,6 +17,7 @@ Casein 3.x is built for Ruby on Rails 3 and has the following major updates:
 * Supplied as a gem
 * Runs as an Engine
 * Now properly namespaced
+* Timezone support
 * Rails 3 compatibility fixes
 
 ==Installation
