@@ -5,7 +5,7 @@
 
 Gem::Specification.new do |s|
   s.name = %q{casein}
-  s.version = "3.1.0"
+  s.version = "3.1.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Russell Quinn", "Spoiled Milk"]
@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.files = [
     "Gemfile",
      "MIT-LICENSE",
+     "PUBLIC_VERSION.yml",
      "README.rdoc",
      "Rakefile",
      "app/controllers/casein/casein_controller.rb",
