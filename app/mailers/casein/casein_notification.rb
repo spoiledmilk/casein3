@@ -4,7 +4,7 @@ module Casein
 	
 		helper Casein::ConfigHelper
 	
-  	default :from => casein_config_email_from_address
+  	default :from => Casein::ConfigHelper.casein_config_email_from_address
 
   	self.prepend_view_path File.join(File.dirname(__FILE__), '..', 'views', 'casein')
 	
