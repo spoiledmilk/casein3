@@ -14,6 +14,7 @@ module Casein
     def new
       @casein_page_title = "Add a new user"
     	@casein_user = Casein::User.new
+    	@casein_user.time_zone = Rails::Application.config.time_zone
     end
   
     def create
@@ -34,8 +35,8 @@ module Casein
     end
  
     def update
-      @casein_page_title = @casein_user.name + " | Update User"
       @casein_user = Casein::User.find params[:id]
+      @casein_page_title = @casein_user.name + " | Update User"
 
       if @casein_user.update_attributes params[:casein_user]
         flash[:notice] = @casein_user.name + " has been updated"

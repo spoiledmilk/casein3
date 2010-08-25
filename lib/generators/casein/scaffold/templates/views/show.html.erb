@@ -2,7 +2,7 @@
 
 <h2>View <%= singular_name.humanize.downcase %></h2>
 
-<%%= form_for @<%= file_name %>, :url => casein_<%= plural_name %>_path(@<%= singular_name %>) do |f| %>
+<%%= form_for @<%= file_name %>, :url => casein_<%= singular_name %>_path(@<%= singular_name %>) do |f| %>
 
 	<%%= render :partial => 'casein/<%= plural_name %>/form', :locals => { :f => f } %>
 	

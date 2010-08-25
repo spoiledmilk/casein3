@@ -83,8 +83,9 @@ module Casein
     def field_type(type)
       case type.to_s.to_sym
         when :integer, :float, :decimal   then :text_field
-        when :datetime, :timestamp, :time then :datetime_select
         when :date                        then :date_select
+        when :time, :timestamp            then :time_select
+        when :datetime                    then :datetime_select
         when :string                      then :text_field
         when :text                        then :text_area
         when :boolean                     then :check_box

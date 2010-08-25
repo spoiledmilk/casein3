@@ -15,9 +15,16 @@
 	</div>
 
 	<div class="tfContainer tfContainerSecond">
-		<%= casein_select form, @casein_user, :access_level, casein_get_access_level_array, {:casein_label => "Status"} %>
+		<%= casein_time_zone_select form, @casein_user, :time_zone, ActiveSupport::TimeZone.us_zones %>
 	</div>
 	
+	<div class="tfContainer">
+		<%= casein_select form, @casein_user, :access_level, casein_get_access_level_array, {:casein_label => "Status"} %>
+	</div>
+
+	<div class="tfContainer tfContainerSecond">
+	</div>
+
 	<div class="tfContainer">
 		<%= casein_password_field form, @casein_user, :password, {:casein_label => "Password"} %>
 	</div>

@@ -15,6 +15,7 @@ module Casein
    
     helper_method :current_user_session, :current_user
     before_filter :authorise
+    before_filter :set_time_zone
     
     ActionView::Base.field_error_proc = proc { |input, instance| "<span class='formError'>#{input}</span>".html_safe }
 
@@ -34,6 +35,10 @@ module Casein
         redirect_to new_casein_user_session_url
         return false
       end
+    end
+    
+    def set_time_zone
+      Time.zone = current_user.time_zone if current_user
     end
   
     def current_user_session

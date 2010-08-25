@@ -16,8 +16,9 @@
 				<% if @session_user != nil %>
 				<ul>
 					<li>Hello <%= @session_user.name %></li>
+					<li><%= Time.zone.name %></li>
 					<li><%= link_to 'Profile', casein_user_path(@session_user) %></li>
-					<li class="lastItem"><%= link_to 'Logout', casein_user_session_url, :method => :delete %></li>
+					<li class="lastItem"><%= link_to 'Logout', casein_user_session_path, :method => :delete %></li>
 				</ul>	
 				<% end %>
 			</div>

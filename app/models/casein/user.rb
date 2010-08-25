@@ -16,10 +16,12 @@ module Casein
 	 
     after_create :send_create_notification
     after_update :send_update_notification
+    before_validation :check_time_zone
     
     validates_presence_of :login, :name, :email
     validates_uniqueness_of :login
     validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+    validates_presence_of :time_zone
 	  
   	def self.has_more_than_one_admin
       Casein::User.where(:access_level => $CASEIN_USER_ACCESS_LEVEL_ADMIN).count > 1
@@ -39,6 +41,10 @@ module Casein
     def send_password_reset_instructions
       reset_perishable_token!
       Casein::CaseinNotification.password_reset_instructions(self, casein_config_hostname).deliver
+    end
+    
+    def check_time_zone
+      self.time_zone = Rails::Application.config.time_zone unless self.time_zone
     end
 	
   	def is_admin?

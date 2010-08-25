@@ -13,12 +13,18 @@
 	<div class="tfContainer">
 		<%= casein_text_field f, f.object, :email %>
 	</div>
-
+	
 	<div class="tfContainer tfContainerSecond">
-		<% if @session_user.is_admin? && (@casein_user.is_admin? == false || Casein::User.has_more_than_one_admin) %>
-			<%= casein_select f, f.object, :access_level, casein_get_access_level_array, {:casein_label => "Status"} %>
-		<% end %>
+		<%= casein_time_zone_select f, f.object, :time_zone, ActiveSupport::TimeZone.us_zones %>
 	</div>
+
+	<% if @session_user.is_admin? && (@casein_user.is_admin? == false || Casein::User.has_more_than_one_admin) %>
+		<div class="tfContainer">
+			<%= casein_select f, f.object, :access_level, casein_get_access_level_array, {:casein_label => "Status"} %>
+		</div>
+		<div class="tfContainer tfContainerSecond">
+		</div>
+	<% end %>
 
 	<div class="clearer"></div>
 

@@ -117,24 +117,27 @@ module Casein
   	def casein_select form, obj, attribute, option_tags, options = {}
   		casein_form_tag_wrapper(form.select(attribute, option_tags, options, {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
   	end
+  	
+  	def casein_time_zone_select form, obj, attribute, option_tags, options = {}
+  	  casein_form_tag_wrapper(form.time_zone_select(attribute, option_tags, options, {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
+  	end
 	
   	def casein_collection_select form, obj, object, attribute, collection, value_method, text_method, options = {}
   		casein_form_tag_wrapper(collection_select(object, attribute, collection, value_method, text_method, options, {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
   	end
-	
-  	def casein_datetime_select form, obj, attribute, options = {}
-  	  options.merge!(:time => true)
-  	  casein_date_select(form, obj, attribute, options).html_safe
-  	end
-	
+  	
   	def casein_date_select form, obj, attribute, options = {}
-  	  content_for(:calendar_includes)	{calendar_date_select_includes "casein"}
-  	  eval("obj.#{attribute.to_s} = Time.now") if eval("obj.#{attribute.to_s}.nil?")
-  	  default_options = { :month_year => "label", :embedded => true, :clear_button => false }
-  	  contents = content_tag(:div, form.calendar_date_select(attribute, {:class => 'caseinDateSelect'}.reverse_merge!(default_options.merge!(options))), :class => 'caseinDateSelectWrapper')
-  	  casein_form_tag_wrapper(contents, form, obj, attribute, options).html_safe
+  	  casein_form_tag_wrapper(form.date_select(attribute, options, {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
   	end
 
+  	def casein_time_select form, obj, attribute, options = {}
+  	  casein_form_tag_wrapper(form.time_select(attribute, options, {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
+  	end
+	
+  	def casein_datetime_select form, obj, attribute, options = {}
+  	  casein_form_tag_wrapper(form.datetime_select(attribute, options, {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
+  	end
+	
   	def casein_file_field form, obj, object_name, attribute, options = {}
   	  contents = '<div class="caseinFileFieldContainer">' + file_field(object_name, attribute, options) + '</div>'
   	  casein_form_tag_wrapper(contents, form, obj, attribute, options).html_safe

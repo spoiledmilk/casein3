@@ -245,6 +245,11 @@
 	margin: 5px 0 0 0;
 }
 
+#content .tfContainer .caseinDateTimeSelect {
+	width: auto;
+	margin: 5px 0 0 0;
+}
+
 #content .tfContainer .caseinFileFieldContainer {
 	width: 350px;
 	padding: 3px 5px 4px 5px;
