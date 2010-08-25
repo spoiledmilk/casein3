@@ -14,6 +14,7 @@ Casein is sponsored by Spoiled Milk (http://www.spoiledmilk.dk) and maintained b
 
 Casein 3.x is built for Ruby on Rails 3 and has the following major updates:
 
+* Authentication changed to use Authlogic
 * Supplied as a gem
 * Runs as an Engine
 * Now properly namespaced
