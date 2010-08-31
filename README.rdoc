@@ -199,7 +199,7 @@ All of the standard Rails form helpers are available, but the Casein versions ar
   casein_file_field form, model, object_name, attribute, options = {}
   casein_hidden_field form, model, attribute, options = {}
 
-For more information on each function, check the casein_helper.rb file within the project. The method parameters are typically the same as the Rails form tag helpers. There are some extra Casein options that can be passed through as part of the options hash:
+For more information on each function, check the app/helpers/casein/casein_helper.rb file within the project. The method parameters are typically the same as the Rails form tag helpers. There are some extra Casein options that can be passed through as part of the options hash:
 
   :casein_label – by default the humanized version of the database field name is used as the label, but this will override it with a string of your choice.
   :casein_button_label – available in casein_radio_button and casein_check_box. Used to give individual buttons their labels.

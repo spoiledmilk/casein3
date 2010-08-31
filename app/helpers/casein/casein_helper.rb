@@ -47,6 +47,15 @@ module Casein
 	  
     	link_to "#{contents}", link
     end
+    
+    def casein_table_cell_no_link contents, options = {}
+	  
+  	  if options.key? :casein_truncate
+  	    contents = truncate(contents, :length => options[:casein_truncate], :omission => "...")
+  	  end
+	  
+    	"<div class='noLink'>#{contents}</div>".html_safe
+    end
 	
   	def casein_show_icon icon_name
   		"<div class='icon'><img src='/casein/images/icons/#{icon_name}.png' alt='' /></div>".html_safe

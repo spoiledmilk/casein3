@@ -118,7 +118,7 @@
 	text-decoration: none;
 }
 
-#content .itemList td.noLink {
+#content .itemList td div.noLink {
 	padding: 9px 8px 7px 8px;
 }
 
