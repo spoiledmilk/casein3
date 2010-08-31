@@ -6,7 +6,7 @@
 		<% end %><th>&nbsp;</th>
 	</tr>
 	
-	<%% @<%= plural_name %>.each_with_index do |<%= singular_name %>, index| %>
+	<%% <%= plural_name %>.each_with_index do |<%= singular_name %>, index| %>
 		<tr class="<%%= 'even' if index.modulo(2) == 0 %> hover">
 			<% attributes.each do |attribute| %><td><%%= casein_table_cell_link <%= singular_name %>.<%= attribute.name %>, casein_<%= singular_name %>_path(<%= singular_name %>) %></td>
 			<% end %><td class="delete">

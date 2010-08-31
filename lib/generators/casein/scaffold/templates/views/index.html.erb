@@ -2,7 +2,7 @@
 
 <h2><%= plural_name.humanize.capitalize %></h2>
 
-<%%= render :partial => 'casein/<%= plural_name %>/table' %>
+<%%= render :partial => 'casein/<%= plural_name %>/table', :locals => { :<%= plural_name %> => @<%= plural_name %> } %>
 
 <%%= will_paginate @<%= plural_name %> %>
 
