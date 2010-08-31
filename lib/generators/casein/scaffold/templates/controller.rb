@@ -49,7 +49,7 @@ module Casein
     end
  
     def destroy
-      @<%= singular_name %> = <%= class_name %>.find_by_id params[:id]
+      @<%= singular_name %> = <%= class_name %>.find params[:id]
 
       @<%= singular_name %>.destroy
       flash[:notice] = '<%= singular_name.humanize.capitalize %> has been deleted'
