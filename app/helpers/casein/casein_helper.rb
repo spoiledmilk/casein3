@@ -45,7 +45,7 @@ module Casein
   	    contents = truncate(contents, :length => options[:casein_truncate], :omission => "...")
   	  end
 	  
-    	link_to "#{contents}", link
+    	link_to "#{contents}".html_safe, link, options
     end
     
     def casein_table_cell_no_link contents, options = {}
