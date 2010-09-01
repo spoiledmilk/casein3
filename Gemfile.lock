@@ -1,0 +1,21 @@
+PATH
+  remote: .
+  specs:
+    casein (3.1.2)
+      authlogic (= 2.1.6)
+      will_paginate (~> 3.0.pre2)
+
+GEM
+  specs:
+    activesupport (3.0.0)
+    authlogic (2.1.6)
+      activesupport
+    will_paginate (3.0.pre2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  authlogic (= 2.1.6)
+  casein!
+  will_paginate (~> 3.0.pre2)
