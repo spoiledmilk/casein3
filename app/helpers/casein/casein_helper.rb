@@ -68,23 +68,23 @@ module Casein
   	# Styled form tag helpers
 	
   	def casein_text_field form, obj, attribute, options = {}
-  	  casein_form_tag_wrapper(form.text_field(attribute, options.merge({:class => 'caseinTextField'})), form, obj, attribute, options).html_safe
+  	  casein_form_tag_wrapper(form.text_field(attribute, strip_casein_options(options.merge({:class => 'caseinTextField'}))), form, obj, attribute, options).html_safe
   	end
 	
   	def casein_password_field form, obj, attribute, options = {}
-  		casein_form_tag_wrapper(form.password_field(attribute, options.merge({:class => 'caseinTextField'})), form, obj, attribute, options).html_safe
+  		casein_form_tag_wrapper(form.password_field(attribute, strip_casein_options(options.merge({:class => 'caseinTextField'}))), form, obj, attribute, options).html_safe
   	end
 	
   	def casein_text_area form, obj, attribute, options = {}
-  	  casein_form_tag_wrapper(form.text_area(attribute, options.merge({:class => 'caseinTextArea'})), form, obj, attribute, options).html_safe
+  	  casein_form_tag_wrapper(form.text_area(attribute, strip_casein_options(options.merge({:class => 'caseinTextArea'}))), form, obj, attribute, options).html_safe
   	end
 	
   	def casein_text_area_big form, obj, attribute, options = {}
-  	 casein_form_tag_wrapper(form.text_area(attribute, options.merge({:class => 'caseinTextAreaBig'})), form, obj, attribute, options).html_safe
+  	 casein_form_tag_wrapper(form.text_area(attribute, strip_casein_options(options.merge({:class => 'caseinTextAreaBig'}))), form, obj, attribute, options).html_safe
   	end
 	
   	def casein_check_box form, obj, attribute, options = {}
-  	  form_tag = form.check_box(attribute, options)
+  	  form_tag = form.check_box(attribute, strip_casein_options(options))
 	  
   	  if options.key? :casein_box_label
   	    form_tag = "<div>" + form_tag + "<span class=\"rcText\">#{options[:casein_box_label]}</span></div>".html_safe
@@ -104,7 +104,7 @@ module Casein
     end
 	
   	def casein_radio_button form, obj, attribute, tag_value, options = {}
-  	  form_tag = form.radio_button(obj, attribute, tag_value, options)
+  	  form_tag = form.radio_button(obj, attribute, tag_value, strip_casein_options(options))
 	  
   	  if options.key? :casein_button_label
   	    form_tag = "<div>" + form_tag + "<span class=\"rcText\">#{options[:casein_button_label]}</span></div>".html_safe
@@ -124,39 +124,43 @@ module Casein
     end
 	
   	def casein_select form, obj, attribute, option_tags, options = {}
-  		casein_form_tag_wrapper(form.select(attribute, option_tags, options, {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
+  		casein_form_tag_wrapper(form.select(attribute, option_tags, strip_casein_options(options), {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
   	end
   	
   	def casein_time_zone_select form, obj, attribute, option_tags, options = {}
-  	  casein_form_tag_wrapper(form.time_zone_select(attribute, option_tags, options, {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
+  	  casein_form_tag_wrapper(form.time_zone_select(attribute, option_tags, strip_casein_options(options), {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
   	end
 	
   	def casein_collection_select form, obj, object, attribute, collection, value_method, text_method, options = {}
-  		casein_form_tag_wrapper(collection_select(object, attribute, collection, value_method, text_method, options, {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
+  		casein_form_tag_wrapper(collection_select(object, attribute, collection, value_method, text_method, strip_casein_options(options), {:class => 'caseinSelect'}), form, obj, attribute, options).html_safe
   	end
   	
   	def casein_date_select form, obj, attribute, options = {}
-  	  casein_form_tag_wrapper(form.date_select(attribute, options, {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
+  	  casein_form_tag_wrapper(form.date_select(attribute, strip_casein_options(options), {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
   	end
 
   	def casein_time_select form, obj, attribute, options = {}
-  	  casein_form_tag_wrapper(form.time_select(attribute, options, {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
+  	  casein_form_tag_wrapper(form.time_select(attribute, strip_casein_options(options), {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
   	end
 	
   	def casein_datetime_select form, obj, attribute, options = {}
-  	  casein_form_tag_wrapper(form.datetime_select(attribute, options, {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
+  	  casein_form_tag_wrapper(form.datetime_select(attribute, strip_casein_options(options), {:class => 'caseinDateTimeSelect'}), form, obj, attribute, options).html_safe
   	end
 	
   	def casein_file_field form, obj, object_name, attribute, options = {}
-  	  contents = '<div class="caseinFileFieldContainer">' + file_field(object_name, attribute, options) + '</div>'
+  	  contents = '<div class="caseinFileFieldContainer">' + file_field(object_name, attribute, strip_casein_options(options)) + '</div>'
   	  casein_form_tag_wrapper(contents, form, obj, attribute, options).html_safe
   	end
 	
   	def casein_hidden_field form, obj, attribute, options = {}
-  	  form.hidden_field(obj, attribute, options).html_safe
+  	  form.hidden_field(obj, attribute, strip_casein_options(options)).html_safe
   	end
 	
   protected
+
+    def strip_casein_options options
+      options.reject {|key, value| key.to_s.include? "casein_" }
+    end
 
     def casein_form_tag_wrapper form_tag, form, obj, attribute, options = {}
         unless options.key? :casein_label
