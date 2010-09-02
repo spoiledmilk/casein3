@@ -203,12 +203,12 @@
 	margin: 3px 0 0 0;
 }
 
-#content .tfContainer .formError {
+.formError {
   padding: 7px 0 0 0;
 	color: #801616;
 }
 
-#content .tfContainer .formError input {
+.formError input, textarea {
 	border: 1px solid #801616;
 }
 
