@@ -208,7 +208,7 @@
 	color: #801616;
 }
 
-.formError input, textarea {
+.formError > input, .formError > textarea {
 	border: 1px solid #801616;
 }
 
