@@ -7,12 +7,12 @@
 	<%%= render :partial => 'casein/<%= plural_name %>/form', :locals => { :f => f } %>
 	
 	<p class="submits">
-	  <%%= link_to 'Cancel', casein_<%= plural_name %>_path, :class => 'cancel' %> or
+	  <%%= link_to 'Cancel', casein_<%= @plural_route %>_path, :class => 'cancel' %> or
 		<%%= f.submit "Save changes", :class => "update" %>
 	</p>
 
 <%% end %>
 
 <%%= content_for :sidebar do %>
-	<li><%%= link_to "#{casein_show_icon "table"}Back to list".html_safe, casein_<%= plural_name %>_path %></li>
+	<li><%%= link_to "#{casein_show_icon "table"}Back to list".html_safe, casein_<%= @plural_route %>_path %></li>
 <%% end %>
