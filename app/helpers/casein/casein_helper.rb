@@ -153,7 +153,7 @@ module Casein
   	end
 	
   	def casein_hidden_field form, obj, attribute, options = {}
-  	  form.hidden_field(obj, attribute, strip_casein_options(options)).html_safe
+  	  form.hidden_field(attribute, strip_casein_options(options)).html_safe
   	end
 	
   protected
