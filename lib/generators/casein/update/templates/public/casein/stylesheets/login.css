@@ -11,6 +11,10 @@ body {
 	font-family: "Lucida Grande", "Trebuchet MS", Helvetica, Arial, sans-serif;
 }
 
+a {
+	outline: none;
+}
+
 #header {
 	background: #efefef url(/casein/images/login/top.png) repeat-x bottom left;
 	padding: 80px 0 40px 0;

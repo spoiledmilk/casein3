@@ -25,6 +25,7 @@ img {
 a {
 	color: #333333;
 	text-decoration: underline;
+	outline: none;
 }
 
 a:hover {
