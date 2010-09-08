@@ -149,7 +149,7 @@ module Casein
 	
   	def casein_file_field form, obj, object_name, attribute, options = {}
   	  class_hash = merged_class_hash(options, 'caseinFileFieldContainer')
-  	  contents = "<div class='#{class_hash['class']}'>" + file_field(object_name, attribute, strip_casein_options(options)) + '</div>'
+  	  contents = "<div class='#{class_hash[:class]}'>" + file_field(object_name, attribute, strip_casein_options(options)) + '</div>'
   	  casein_form_tag_wrapper(contents, form, obj, attribute, options).html_safe
   	end
 	
