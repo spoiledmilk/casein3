@@ -9,4 +9,14 @@ module Casein
     end
     
   end
+  
+  class RouteConstraint
+
+     def matches?(request)
+       return false if request.fullpath.include?("/casein")
+       return false if request.fullpath.include?("/admin")
+       true
+     end
+
+   end
 end

@@ -215,6 +215,14 @@ There is an optional container class that forces form elements to use the whole 
 
 Sometimes it is necessary or useful to add guidelines or help text to your forms and tables. Casein offers a CSS class for this called “help”, which can be used throughout your views as necessary.
 
+===Routes
+
+Casein adds the routes for the scaffolded models to the top of your application’s routes.rb file. It also adds default routes for basic Casein functionality <b>after</b> your application’s routes. If you have a catch-all style route defined, then these defaults won’t be run. You can solve this be using Rails’ constraint feature and the supplied Casein::RouteConstraint, which will stop your catch-all from matching if the request is for a Casein resource.
+
+e.g.
+
+  match ':controller(/:action(/:id(.:format)))', :constraints => Casein::RouteConstraint.new
+
 ==Acknowledgements
 
 The icons used in Casein were created by Mark James and are licensed under the Creative Commons Attribution 2.5 License (http://creativecommons.org/licenses/by/2.5/). The full series of icons are available here: http://www.famfamfam.com/lab/icons/silk/

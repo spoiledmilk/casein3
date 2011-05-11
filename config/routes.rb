@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   match "/admin" => redirect("/casein")
   
   namespace :casein do
+  
     resources :users do
       member do
         put :update_password, :reset_password
@@ -12,7 +13,7 @@ Rails.application.routes.draw do
     resource :user_session
     resource :password_reset, :only => [:create, :edit, :update]
         
-    get :blank, :controller => :casein
+    match "/blank" => "casein#blank"
     root :to => "casein#index"
   end
   
