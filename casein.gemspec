@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{casein}
-  s.version = "3.1.9"
+  s.version = "3.1.10"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Russell Quinn", "Spoiled Milk"]
-  s.date = %q{2011-05-12}
+  s.authors = [%q{Russell Quinn}, %q{Spoiled Milk}]
+  s.date = %q{2011-08-09}
   s.description = %q{Casein is an open source CMS for Ruby on Rails, originally developed by Spoiled Milk.}
   s.email = %q{mail@russellquinn.com}
   s.extra_rdoc_files = [
@@ -92,8 +92,8 @@ Gem::Specification.new do |s|
     "lib/railties/tasks.rake"
   ]
   s.homepage = %q{http://github.com/spoiledmilk/casein3}
-  s.require_paths = ["lib"]
-  s.rubygems_version = %q{1.5.3}
+  s.require_paths = [%q{lib}]
+  s.rubygems_version = %q{1.8.6}
   s.summary = %q{A lightweight Ruby on Rails CMS.}
 
   if s.respond_to? :specification_version then
@@ -101,17 +101,17 @@ Gem::Specification.new do |s|
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<casein>, [">= 0"])
-      s.add_runtime_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
-      s.add_runtime_dependency(%q<authlogic>, ["= 3.0.2"])
+      s.add_runtime_dependency(%q<will_paginate>, ["= 3.0.0"])
+      s.add_runtime_dependency(%q<authlogic>, ["= 3.0.3"])
     else
       s.add_dependency(%q<casein>, [">= 0"])
-      s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
-      s.add_dependency(%q<authlogic>, ["= 3.0.2"])
+      s.add_dependency(%q<will_paginate>, ["= 3.0.0"])
+      s.add_dependency(%q<authlogic>, ["= 3.0.3"])
     end
   else
     s.add_dependency(%q<casein>, [">= 0"])
-    s.add_dependency(%q<will_paginate>, ["~> 3.0.pre2"])
-    s.add_dependency(%q<authlogic>, ["= 3.0.2"])
+    s.add_dependency(%q<will_paginate>, ["= 3.0.0"])
+    s.add_dependency(%q<authlogic>, ["= 3.0.3"])
   end
 end
 
