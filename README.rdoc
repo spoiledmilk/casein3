@@ -105,7 +105,7 @@ Now that you have the basic Casein installed and configured, you’ll want to ex
 
 <b>Rules and conventions</b>
 
-* Casein extension controllers and helpers should be namespaced to casein::
+* Casein extension controllers and helpers should be namespaced to 'Casein::'
 * Casein extension controllers should derive from Casein::CaseinController and not ApplicationController
 * To set the page title, your controller action should set @casein_page_title. If this is not set, then Casein will use a default created from your project name.
 
@@ -160,7 +160,7 @@ e.g. a typical scaffolding command might look like:
 
   rails g casein:scaffold customer name:string age:integer date_of_birth:date is_male:boolean
 
-There are currently two further command line options that can be added to the end of the generate command:
+There is one command-line option that can be added to the end of the generate command:
 
   --create-model-and-migration = Also creates a model and migration. By default the scaffold generator will work from existing models, but this option will generate the model and database migration files for you. This means you can also use Casein to set up a new project quickly as well.
 

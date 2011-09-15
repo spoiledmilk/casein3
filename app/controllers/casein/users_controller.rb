@@ -14,7 +14,7 @@ module Casein
     def new
       @casein_page_title = "Add a new user"
     	@casein_user = Casein::User.new
-    	@casein_user.time_zone = Rails::Application.config.time_zone
+    	@casein_user.time_zone = Rails.configuration.time_zone
     end
   
     def create

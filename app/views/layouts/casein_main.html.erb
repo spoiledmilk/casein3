@@ -5,8 +5,14 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 		<title><%= casein_generate_page_title %></title>
-		<%= stylesheet_link_tag casein_config_stylesheet_includes %>
-		<%= javascript_include_tag casein_config_javascript_includes %>
+		<% casein_config_stylesheet_includes.each do |stylesheet| %>
+			<%= stylesheet_link_tag(stylesheet) %>
+		<% end %>
+		
+		<% casein_config_javascript_includes.each do |javascript| %>
+			<%= javascript_include_tag(javascript) %>
+		<% end %>
+
 		<%= csrf_meta_tag %>
 	</head>
 	<body>
