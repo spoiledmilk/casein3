@@ -27,7 +27,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "casein"
     gem.summary = "A lightweight Ruby on Rails CMS."
-    gem.description = "Casein is an open source CMS for Ruby on Rails, originally developed by Spoiled Milk."
+    gem.description = "Casein is an open-source CMS for Ruby on Rails, originally developed by Spoiled Milk."
     gem.files = Dir["Gemfile", "MIT-LICENSE", "Rakefile", "README.rdoc", "PUBLIC_VERSION.yml", "{lib}/**/*", "{app}/**/*", "{config}/**/*"]
     gem.email = "mail@russellquinn.com"
     gem.authors = ["Russell Quinn", "Spoiled Milk"]
